@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 17:35:15
+ * @since 2023-07-10 18:51:02
  */
 public interface WarehouseInfoService extends IService<WarehouseInfoEntity> {
 

@@ -1,6 +1,5 @@
 package com.pet.pro.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,7 +15,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 17:35:14
+ * @since 2023-07-10 18:51:02
  */
 @Getter
 @Setter
@@ -25,17 +24,21 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "StorageEntity对象", description = "库存信息")
 public class StorageEntity {
 
+    @ApiModelProperty("库存id")
+    @TableId("storage_id")
+    private String storageId;
+
     @ApiModelProperty("仓库id")
-    @TableId(value = "warehouse_id", type = IdType.AUTO)
+    @TableField("warehouse_id")
     private Integer warehouseId;
 
     @ApiModelProperty("商品id")
-    @TableId(value = "commodity_id", type = IdType.AUTO)
+    @TableField("commodity_id")
     private Integer commodityId;
 
     @ApiModelProperty("库存数量")
-    @TableField("num")
-    private Integer num;
+    @TableField("quantity")
+    private Double quantity;
 
 
 }
