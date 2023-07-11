@@ -29,10 +29,6 @@ public class CommodityTypeEntity {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty("商家id")
-    @TableField("shop_id")
-    private Integer shopId;
-
     @ApiModelProperty("类别名称")
     @TableField("`name`")
     private String name;

@@ -10,26 +10,32 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * 管理员
- * @TableName administrator
+ * 商家用户
+ * @TableName merchant_user
  */
-@TableName(value ="administrator")
+@TableName(value ="merchant_user")
 @Data
-public class AdministratorEntity implements Serializable {
+public class MerchantUserEntity implements Serializable {
     /**
-     * 管理员编号
+     * 商家用户编号
      */
-    @ApiModelProperty("管理员编号")
-    @TableId(value = "administrator_id", type = IdType.AUTO)
-    private Integer administratorId;
-
+    @ApiModelProperty("商家用户编号")
+    @TableId(value = "merchant_user_ud", type = IdType.AUTO)
+    private Integer merchantUserUd;
 
     /**
-     * 用户权限
+     * 商家名称
      */
-    @ApiModelProperty("用户权限")
-    @TableField("`user_rights`")
-    private String userRights;
+    @ApiModelProperty("商家名称")
+    @TableField("`merchant_name`")
+    private String merchantName;
+
+    /**
+     * 商家地址
+     */
+    @ApiModelProperty("商家地址")
+    @TableField("`merchant_address`")
+    private String merchantAddress;
 
     /**
      * 登录编号

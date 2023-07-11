@@ -17,18 +17,20 @@ public class RegularUserEntity implements Serializable {
     /**
      * 普通用户编号
      */
-    @TableId
-    private Integer regular_user_id;
+    @TableId(value = "regular_user_id", type = IdType.AUTO)
+    private Integer regularUserId;
 
     /**
      * 生日
      */
+    @TableField("`birthday`")
     private String birthday;
 
     /**
      * 登录编号
      */
-    private Integer login_id;
+    @TableField("login_id")
+    private Integer loginId;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

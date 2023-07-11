@@ -37,6 +37,14 @@ public class LoginEntity {
     @TableField("`password`")
     private String password;
 
+    @ApiModelProperty("性别")
+    @TableField("gender")
+    private String gender;
+
+    @ApiModelProperty("头像")
+    @TableField("avatar")
+    private String avatar;
+
     @ApiModelProperty("电话")
     @TableField("phone")
     private String phone;

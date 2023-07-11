@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
  * 商家信息
  * </p>
  *
- * @author  My-way
+ * @author My-way
  * @since 2023-07-10 18:51:02
  */
 @Getter
@@ -37,5 +37,16 @@ public class ShopEntity {
     @TableField("introduce")
     private String introduce;
 
+    @ApiModelProperty("商家地址")
+    @TableField("address")
+    private String address;
+
+    @ApiModelProperty("商家id")
+    @TableField("merchant_id")
+    private Integer merchantId;
+
+    @ApiModelProperty("商家头像")
+    @TableField("avatar")
+    private String avatar;
 
 }
