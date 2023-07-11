@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.pro.mapper.AdministratorEntityMapper">
+
+    <resultMap id="BaseResultMap" type="com.pet.pro.entity.AdministratorEntity">
+            <id property="administrator_id" column="administrator_id" jdbcType="INTEGER"/>
+            <result property="user_rights" column="user_rights" jdbcType="VARCHAR"/>
+            <result property="login_id" column="login_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        administrator_id,user_rights,login_id
+    </sql>
+</mapper>

@@ -1,5 +1,7 @@
 package com.pet.pro.entity.views;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -18,40 +20,60 @@ public class ComGoodsView implements Serializable {
     /**
      * 商品id
      */
+    @TableId(value = "id")
     private Integer id;
 
     /**
      * 品牌名称
      */
+    @TableField("brand_name")
     private String brandName;
 
     /**
      * 类别名称
      */
+    @TableField("type_name")
     private String typeName;
 
     /**
      * 商品名称
      */
+    @TableField("commodity_name")
     private String commodityName;
 
     /**
      * 商品价格
      */
+    @TableField("price")
     private Double price;
 
     /**
      * 商品图片
      */
+    @TableField("photo")
     private String photo;
 
     /**
      * 商品介绍
      */
+    @TableField("introduce")
     private String introduce;
 
     /**
      * 销量
      */
+    @TableField("sale_volume")
     private Integer saleVolume;
+
+    /**
+     * 店铺名称
+     */
+    @TableField("shop_name")
+    private String shopName;
+
+    /**
+     * 店铺id
+     */
+    @TableField("shop_id")
+    private Integer shopId;
 }
