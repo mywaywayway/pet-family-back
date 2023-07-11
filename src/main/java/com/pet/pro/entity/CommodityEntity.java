@@ -57,5 +57,11 @@ public class CommodityEntity {
     @TableField("sale_volume")
     private Integer saleVolume;
 
+    @ApiModelProperty("商品状态")
+    @TableField("status")
+    private String status;
 
+    @ApiModelProperty("商人id")
+    @TableField("shop_id")
+    private Integer shopId;
 }
