@@ -1,7 +1,6 @@
 package com.pet.pro.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-11 20:16:25
+ * @since 2023-07-12 09:32:38
  */
 @RestController
 @RequestMapping("/administrator-entity")

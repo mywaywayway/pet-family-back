@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-11 20:16:25
+ * @since 2023-07-12 09:32:38
  */
 @Getter
 @Setter
@@ -48,6 +48,10 @@ public class ShopEntity {
     @ApiModelProperty("商店的头像")
     @TableField("avatar")
     private String avatar;
+
+    @ApiModelProperty("商店营业状态")
+    @TableField("shop_status")
+    private String shopStatus;
 
 
 }

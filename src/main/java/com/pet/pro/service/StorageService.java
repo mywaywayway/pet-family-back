@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-11 20:16:25
+ * @since 2023-07-12 09:32:38
  */
 public interface StorageService extends IService<StorageEntity> {
 

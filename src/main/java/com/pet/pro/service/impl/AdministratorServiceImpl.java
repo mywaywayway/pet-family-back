@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-11 20:16:25
+ * @since 2023-07-12 09:32:38
  */
 @Service
 public class AdministratorServiceImpl extends ServiceImpl<AdministratorMapper, AdministratorEntity> implements AdministratorService {
