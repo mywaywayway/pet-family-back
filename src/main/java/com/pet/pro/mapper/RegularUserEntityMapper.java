@@ -1,7 +1,9 @@
 package com.pet.pro.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.pet.pro.entity.RegularUserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author YehWang
@@ -9,7 +11,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2023-07-11 17:17:22
 * @Entity com.pet.pro.entity.RegularUserEntity
 */
-public interface RegularUserEntityMapper extends BaseMapper<RegularUserEntity> {
+@Mapper
+public interface RegularUserEntityMapper extends MPJBaseMapper<RegularUserEntity> {
 
 }
 

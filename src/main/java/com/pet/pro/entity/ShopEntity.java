@@ -25,19 +25,19 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "ShopEntity对象", description = "商家信息")
 public class ShopEntity {
 
-    @ApiModelProperty("商家id")
+    @ApiModelProperty("商店id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty("商家名称")
+    @ApiModelProperty("商店名称")
     @TableField("`name`")
     private String name;
 
-    @ApiModelProperty("商家介绍")
+    @ApiModelProperty("商店介绍")
     @TableField("introduce")
     private String introduce;
 
-    @ApiModelProperty("商家地址")
+    @ApiModelProperty("商店地址")
     @TableField("address")
     private String address;
 
@@ -45,8 +45,12 @@ public class ShopEntity {
     @TableField("merchant_id")
     private Integer merchantId;
 
-    @ApiModelProperty("商家头像")
+    @ApiModelProperty("商店头像")
     @TableField("avatar")
     private String avatar;
+
+    @ApiModelProperty("商店状态")
+    @TableField("shop_status")
+    private String shopStatus;
 
 }

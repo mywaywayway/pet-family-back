@@ -1,7 +1,9 @@
 package com.pet.pro.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.pet.pro.entity.MerchantUserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author YehWang
@@ -9,7 +11,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2023-07-11 17:36:38
 * @Entity com.pet.pro.entity.MerchantUserEntity
 */
-public interface MerchantUserEntityMapper extends BaseMapper<MerchantUserEntity> {
+@Mapper
+public interface MerchantUserEntityMapper extends MPJBaseMapper<MerchantUserEntity> {
 
 }
 

@@ -1,5 +1,6 @@
 package com.pet.pro.service;
 
+import com.pet.pro.entity.DTO.MerchantUser;
 import com.pet.pro.entity.RegularUserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-07-11 17:17:22
 */
 public interface RegularUserEntityService extends IService<RegularUserEntity> {
+
 
 }

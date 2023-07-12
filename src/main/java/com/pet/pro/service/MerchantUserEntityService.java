@@ -1,5 +1,6 @@
 package com.pet.pro.service;
 
+import com.pet.pro.entity.DTO.MerchantUser;
 import com.pet.pro.entity.MerchantUserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +11,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface MerchantUserEntityService extends IService<MerchantUserEntity> {
 
+    /**
+     * 根据用户id查询商家用户信息
+     * @param id 商家用户id
+     *           @return 用户信息
+     * @see com.pet.pro.service.impl.MerchantUserEntityServiceImpl#selectMerchantUserByMerchantId(Integer)
+     */
+    MerchantUser selectMerchantUserByMerchantId(Integer id);
 }

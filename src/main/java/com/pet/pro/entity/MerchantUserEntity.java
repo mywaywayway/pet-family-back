@@ -20,8 +20,8 @@ public class MerchantUserEntity implements Serializable {
      * 商家用户编号
      */
     @ApiModelProperty("商家用户编号")
-    @TableId(value = "merchant_user_ud", type = IdType.AUTO)
-    private Integer merchantUserUd;
+    @TableId(value = "merchant_user_Id", type = IdType.AUTO)
+    private Integer merchantUserId;
 
     /**
      * 商家名称
