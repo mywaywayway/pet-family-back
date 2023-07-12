@@ -21,4 +21,6 @@ public interface ComGoodsService extends IService<ComGoodsView> {
      */
    public List<ComGoodsView> getComGoodsListByShopId(int shopId);
 
+   List<ComGoodsView> getAllGoods();
+
 }

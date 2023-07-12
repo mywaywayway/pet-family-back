@@ -3,6 +3,8 @@ package com.pet.pro.service;
 import com.pet.pro.entity.ShopEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 商店信息 服务类
@@ -13,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ShopService extends IService<ShopEntity> {
 
+
+    List<ShopEntity> getShopByMerchantId(int merchantId);
 }
