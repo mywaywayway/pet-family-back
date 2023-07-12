@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 商家信息 服务实现类
+ * 商店信息 服务实现类
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-12 09:32:38
  */
 @Service
 public class ShopServiceImpl extends ServiceImpl<ShopMapper, ShopEntity> implements ShopService {

@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-12 09:32:38
  */
 @Getter
 @Setter
@@ -61,11 +61,9 @@ public class CommodityEntity {
     @TableField("state")
     private String state;
 
-    @ApiModelProperty("商人id")
+    @ApiModelProperty("商家id")
     @TableField("shop_id")
     private Integer shopId;
 
-    @ApiModelProperty("商店地址")
-    @TableField("address")
-    private String Address;
+
 }

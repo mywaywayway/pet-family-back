@@ -1,5 +1,6 @@
 package com.pet.pro.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -15,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-12 09:32:38
  */
 @Getter
 @Setter
@@ -25,7 +26,7 @@ import lombok.experimental.Accessors;
 public class StorageEntity {
 
     @ApiModelProperty("库存id")
-    @TableId("storage_id")
+    @TableId(value = "storage_id", type = IdType.AUTO)
     private String storageId;
 
     @ApiModelProperty("仓库id")

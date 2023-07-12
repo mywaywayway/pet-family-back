@@ -44,7 +44,7 @@ public class CommodityController {
         int flag= commodityServiceImpl.addCommodity(commodityEntity);
         if(flag==1){
             return Result.success("添加成功");
-    }else {
+        }else {
             return Result.fail("添加失败");
         }
     }
