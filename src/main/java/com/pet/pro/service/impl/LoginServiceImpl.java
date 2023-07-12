@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 登录 服务实现类
+ * 登录用户 服务实现类
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-11 20:16:25
  */
 @Service
 public class LoginServiceImpl extends ServiceImpl<LoginMapper, LoginEntity> implements LoginService {

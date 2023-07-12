@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-11 20:16:25
  */
 @Getter
 @Setter
@@ -28,10 +28,6 @@ public class CommodityTypeEntity {
     @ApiModelProperty("类别id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-
-    @ApiModelProperty("商家id")
-    @TableField("shop_id")
-    private Integer shopId;
 
     @ApiModelProperty("类别名称")
     @TableField("`name`")

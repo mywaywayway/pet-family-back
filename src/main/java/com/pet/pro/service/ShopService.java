@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 商家信息 服务类
+ * 商店信息 服务类
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-11 20:16:25
  */
 public interface ShopService extends IService<ShopEntity> {
 
