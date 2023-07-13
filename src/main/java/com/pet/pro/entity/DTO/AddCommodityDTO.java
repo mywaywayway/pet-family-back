@@ -7,5 +7,5 @@ import lombok.Data;
 public class AddCommodityDTO {
     private CommodityEntity commodity;
     private Integer warehouseId;
-    private Integer num;
+    private Integer quantity;
 }
