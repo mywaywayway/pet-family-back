@@ -5,19 +5,34 @@
 <mapper namespace="com.pet.pro.mapper.ComGoodsMapper">
 
     <resultMap id="BaseResultMap" type="com.pet.pro.entity.views.ComGoodsView">
-            <result property="id" column="id" jdbcType="INTEGER"/>
-            <result property="brandName" column="brand_name" jdbcType="VARCHAR"/>
-            <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
-            <result property="commodityName" column="commodity_name" jdbcType="VARCHAR"/>
-            <result property="price" column="price" jdbcType="DOUBLE"/>
-            <result property="photo" column="photo" jdbcType="VARCHAR"/>
-            <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
-            <result property="saleVolume" column="sale_volume" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="brandName" column="brand_name" jdbcType="VARCHAR"/>
+        <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+        <result property="commodityName" column="commodity_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DOUBLE"/>
+        <result property="photo" column="photo" jdbcType="VARCHAR"/>
+        <result property="introduce" column="introduce" jdbcType="VARCHAR"/>
+        <result property="saleVolume" column="sale_volume" jdbcType="INTEGER"/>
+        <result property="shopName" column="shop_name" jdbcType="VARCHAR"/>
+        <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,brand_name,type_name,
         commodity_name,price,photo,
-        introduce,sale_volume
+        introduce,sale_volume,shop_name,
+            shop_id
     </sql>
+<!--    <select id="selectByShopId" resultMap="BaseResultMap" resultType="com.pet.pro.entity.views.ComGoodsView">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from com_goods-->
+<!--        where shop_id = #{shopId}-->
+<!--    </select>-->
+    <!--    <select id="selectByShopId" resultType="com.pet.pro.entity.views.ComGoodsView">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from com_goods-->
+<!--        where shop_id = #{shopId}-->
+<!--    </select>-->
 </mapper>

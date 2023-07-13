@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.pro.mapper.UserTotalInfoViewMapper">
+
+    <resultMap id="BaseResultMap" type="com.pet.pro.entity.views.UserTotalInfoView">
+            <result property="address_id" column="address_id" jdbcType="INTEGER"/>
+            <result property="user_id" column="user_id" jdbcType="INTEGER"/>
+            <result property="linkman" column="linkman" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="linkman_phone" column="linkman_phone" jdbcType="VARCHAR"/>
+            <result property="detail_address" column="detail_address" jdbcType="VARCHAR"/>
+            <result property="login_id" column="login_id" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="grade" column="grade" jdbcType="VARCHAR"/>
+            <result property="birthday" column="birthday" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        address_id,user_id,linkman,
+        address,linkman_phone,detail_address,
+        login_id,username,password,
+        gender,avatar,phone,
+        email,grade,birthday
+    </sql>
+</mapper>

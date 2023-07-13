@@ -41,5 +41,4 @@ public class MerchantUserEntity {
     @TableField("login_id")
     private Integer loginId;
 
-
 }

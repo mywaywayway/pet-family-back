@@ -21,11 +21,17 @@ import java.util.Objects;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-12 11:53:07
+ * @since 2023-07-12 14:38:03
  */
 @Service
 public class AuditServiceImpl extends ServiceImpl<AuditMapper, AuditEntity> implements AuditService {
 
+
+
+    @Override
+    public int insertAudit(AuditEntity auditEntity){
+        return baseMapper.insert(auditEntity);
+    }
 
     AuditMapper auditMapper;
     @Autowired

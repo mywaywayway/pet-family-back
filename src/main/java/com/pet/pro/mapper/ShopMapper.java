@@ -3,6 +3,9 @@ package com.pet.pro.mapper;
 import com.pet.pro.entity.ShopEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ShopMapper extends BaseMapper<ShopEntity> {
 
+    /**
+     * 根据商家id查询店铺信息
+     * @param id 商家id
+     * @return 店铺信息
+     */
+    @Select("select * from pet_shop.shop where merchant_id = #{id}")
+    List<ShopEntity> selectShopByMerchantId(Integer id);
 }

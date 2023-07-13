@@ -11,9 +11,18 @@ import java.util.List;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-12 11:53:07
+ * @since 2023-07-12 14:38:03
  */
 public interface AuditService extends IService<AuditEntity> {
+
+    /**
+     * 插入一条审核记录
+     * @param auditEntity 审核记录
+     * @return 是否成功
+     * @see com.pet.pro.service.impl.AuditServiceImpl#insertAudit(AuditEntity)
+     */
+    int insertAudit(AuditEntity auditEntity);
+
 
     //获取审核信息
     List<AuditEntity> getAuditList();

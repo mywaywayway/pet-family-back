@@ -12,20 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 09:32:38
- */
-@RestController
+
+@RestController("OrderFormController")
 @RequestMapping("/order-form-entity")
 public class OrderFormController {
 
-    @Autowired
     private OrderFormMapper orderFormMapper;
+    @Autowired
+    public void setOrderFormMapper(OrderFormMapper orderFormMapper) {
+        this.orderFormMapper = orderFormMapper;
+    }
 
 
     @ApiOperation("用户下单")

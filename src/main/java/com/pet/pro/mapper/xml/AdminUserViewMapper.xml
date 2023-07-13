@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.pro.mapper.AdminUserViewMapper">
+
+    <resultMap id="BaseResultMap" type="com.pet.pro.entity.views.AdminUserView">
+            <result property="administrator_id" column="administrator_id" jdbcType="INTEGER"/>
+            <result property="user_rights" column="user_rights" jdbcType="VARCHAR"/>
+            <result property="login_id" column="login_id" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        administrator_id,user_rights,login_id,
+        username,password,gender,
+        avatar,phone,email
+    </sql>
+</mapper>

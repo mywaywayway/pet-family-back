@@ -2,32 +2,40 @@ package com.pet.pro.controller;
 
 
 import com.pet.pro.entity.ShopEntity;
-import com.pet.pro.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import com.pet.pro.service.impl.ShopServiceImpl;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 商店信息 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 09:32:38
- */
-@RestController
+
+@RestController("ShopController")
+@CrossOrigin
 @RequestMapping("/shop-entity")
 public class ShopController {
 
-    ShopService shopService;
+    private final ShopServiceImpl shopService;
+
     @Autowired
-    public void setShopService(ShopService shopService){
+    public ShopController(ShopServiceImpl shopService) {
         this.shopService = shopService;
+    }
+
+    /**
+     * 根据商家id查询店铺信息
+     * @param MerchantId 商家id
+     *           @return 店铺信息
+     */
+    @ResponseBody
+    @GetMapping("/selectShopByMerchantId/{MerchantId}")
+    public List<ShopEntity> selectShopByMerchantId(@PathVariable Integer MerchantId){
+        if(MerchantId == null)
+            return null;
+        else
+            return shopService.getBaseMapper().selectShopByMerchantId(MerchantId);
     }
 
 
