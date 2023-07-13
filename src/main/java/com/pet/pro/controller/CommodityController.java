@@ -102,6 +102,16 @@ public class CommodityController {
     }
 
     /**
+     * 根据商品id查询商品信息
+     * @param commodityId 商品id
+     * @return  Result<?>  Result.data=商品实体
+     */
+    @GetMapping("/selectCommodityById/{commodityId}")
+    public Result<CommodityEntity> selectCommodityById(@PathVariable int commodityId){
+        return Result.success(commodityServiceImpl.selectCommodityById(commodityId));
+    }
+
+    /**
      * 根据商店id查询商店所有商品具体信息
      *
      * @param shopId 商店id
