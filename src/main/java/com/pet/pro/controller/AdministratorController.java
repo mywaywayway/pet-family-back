@@ -1,21 +1,20 @@
 package com.pet.pro.controller;
 
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
+import com.pet.pro.entity.AdministratorEntity;
+import com.pet.pro.entity.LoginEntity;
 import com.pet.pro.entity.MerchantUserEntity;
 import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.entity.views.ComGoodsView;
 import com.pet.pro.entity.views.MerchantUserView;
-import com.pet.pro.mapper.ComGoodsMapper;
-import com.pet.pro.mapper.MerchantUserViewMapper;
-import com.pet.pro.mapper.ShopMapper;
+import com.pet.pro.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController("AdministratorController")
@@ -34,6 +33,17 @@ public class AdministratorController {
         this.shopMapper = shopMapper;
     }
 
+    LoginMapper loginMapper;
+    @Autowired
+    public void setLoginMapper(LoginMapper loginMapper){
+        this.loginMapper = loginMapper;
+    }
+
+    AdministratorMapper administratorMapper;
+    @Autowired
+    public void setAdministratorMapper(AdministratorMapper administratorMapper){
+        this.administratorMapper = administratorMapper;
+    }
 
     ComGoodsMapper comGoodsMapper;
     @Autowired

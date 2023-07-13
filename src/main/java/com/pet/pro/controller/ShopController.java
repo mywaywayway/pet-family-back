@@ -1,7 +1,10 @@
 package com.pet.pro.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.pet.pro.Result;
 import com.pet.pro.entity.ShopEntity;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +45,17 @@ public class ShopController {
     @GetMapping("/getShopByMerchantId/{merchantId}")
     public List<ShopEntity> getShopByMerchantId(@PathVariable int merchantId){
         return shopService.getShopByMerchantId(merchantId);
+    }
+
+    @ApiOperation("关闭店铺")
+    @GetMapping("/closeShop/{id}")
+    public Result<?> deleteShop(@PathVariable Integer id){
+        QueryWrapper<ShopEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",id);
+        ShopEntity shopEntity = shopService.getOne(wrapper);
+        shopEntity.setShopStatus("歇业中");
+        shopService.updateById(shopEntity);
+        return Result.success();
     }
 
 }
