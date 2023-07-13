@@ -33,6 +33,13 @@ public class ComGoodsServiceImpl extends ServiceImpl<ComGoodsMapper, ComGoodsVie
         return comGoodsMapper.selectList(Wrappers.<ComGoodsView>lambdaQuery().eq(ComGoodsView::getShopId, shopId));
     }
 
+
+    //DoubleHong
+    //获取所有商品视图
+    public List<ComGoodsView> getAllGoods(){
+        return comGoodsMapper.selectList(null);
+    }
+
 //    @Override
 //    public List<ComGoodsView> getComGoodsByShopId(int shopId) {
 //        return comGoodsMapper.selectList(Wrappers.<ComGoodsView>lambdaQuery().eq(ComGoodsView::getShopId, shopId));

@@ -144,5 +144,16 @@ public class CommodityController {
     }
 
 
+
+    /** DoubleHong
+     * 获取所有的商品视图
+     * @return Result<?>  Result.data=商品视图信息列表
+     */
+    @GetMapping("/getAllComGoodsView")
+    public Result<List<ComGoodsView>> getAllComGoodsView(){
+        return Result.success(comGoodsServiceImpl.getAllGoods());
+    }
+
+
 }
 

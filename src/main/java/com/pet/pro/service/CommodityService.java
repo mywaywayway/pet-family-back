@@ -14,7 +14,7 @@ import java.util.List;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-11 20:16:25
  */
 public interface CommodityService extends IService<CommodityEntity> {
 

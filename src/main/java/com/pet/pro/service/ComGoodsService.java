@@ -27,6 +27,8 @@ public interface ComGoodsService extends IService<ComGoodsView> {
      * @see com.pet.pro.service.impl.ComGoodsServiceImpl#updateComGoodById(ComGoodsView)
      */
 
+   List<ComGoodsView> getAllGoods();
+
 
 //    /**
 //     * 根据商店ID获取全部商品信息
