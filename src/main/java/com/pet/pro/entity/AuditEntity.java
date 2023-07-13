@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-12 11:53:07
+ * @since 2023-07-12 12:09:50
  */
 @Getter
 @Setter
@@ -55,6 +55,10 @@ public class AuditEntity {
     @ApiModelProperty("申请人联系方式")
     @TableField("application_phone")
     private String applicationPhone;
+
+    @ApiModelProperty("申请类型")
+    @TableField("audit_type")
+    private String auditType;
 
 
 }

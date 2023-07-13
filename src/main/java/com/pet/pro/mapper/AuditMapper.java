@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-12 11:53:07
+ * @since 2023-07-12 12:09:50
  */
 @Mapper
 public interface AuditMapper extends BaseMapper<AuditEntity> {
