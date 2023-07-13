@@ -9,8 +9,8 @@ import lombok.Data;
  *
  * @TableName merchant_user_view
  */
-@TableName(value ="merchant_user_view")
 @Data
+@TableName(value ="merchant_user_view")
 public class MerchantUserView implements Serializable {
     /**
      * 商家用户编号
@@ -72,6 +72,4 @@ public class MerchantUserView implements Serializable {
     @TableField(value = "email")
     private String email;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-}
+   }

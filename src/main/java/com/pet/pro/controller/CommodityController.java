@@ -1,14 +1,17 @@
 package com.pet.pro.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.CommodityEntity;
 import com.pet.pro.service.impl.ComGoodsServiceImpl;
 import com.pet.pro.entity.DTO.AddCommodityDTO;
 import com.pet.pro.entity.StorageEntity;
 import com.pet.pro.entity.views.ComGoodsView;
+import com.pet.pro.mapper.CommodityMapper;
 import com.pet.pro.service.impl.ComGoodsServiceImpl;
 import com.pet.pro.service.impl.CommodityServiceImpl;
+import com.pet.pro.service.impl.StorageServiceImpl;
 import com.pet.pro.service.impl.StorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +40,9 @@ public class CommodityController {
     public void setComGoodsServiceImpl(ComGoodsServiceImpl comGoodsServiceImpl) {
         this.comGoodsServiceImpl = comGoodsServiceImpl;
     }
+
+    @Autowired
+    private CommodityMapper commodityMapper;
 
     /**
      * 添加商品
@@ -154,6 +160,33 @@ public class CommodityController {
         return Result.success(comGoodsServiceImpl.getAllGoods());
     }
 
+
+//何栋梁
+
+    @PostMapping("/getAllCommdities")
+    public Result<?> getAllCommodities(){
+        LambdaQueryWrapper<CommodityEntity> qurery = new LambdaQueryWrapper<>();
+        qurery.like(CommodityEntity::getName,"");
+        List<CommodityEntity> commodityEntities = commodityMapper.selectList(qurery);
+        return Result.success(commodityEntities);
+    }
+
+    @GetMapping("/getById/{id}")
+    public Result<?> getById(@PathVariable String id){
+        LambdaQueryWrapper<CommodityEntity> query = new LambdaQueryWrapper<>();
+        query.eq(CommodityEntity::getId, id);
+        CommodityEntity commodityEntity = commodityMapper.selectOne(query);
+        return Result.success(commodityEntity);
+    }
+
+    @PostMapping("/getCommdityByName/{name}")
+    public Result<?> getCommodityByName(@PathVariable String name){
+        LambdaQueryWrapper<CommodityEntity> query = new LambdaQueryWrapper<>();
+        query.like(CommodityEntity::getName, name);
+        List<CommodityEntity> commodityEntities = commodityMapper.selectList(query);
+        return Result.success(commodityEntities);
+    }
+//何栋梁
 
 }
 

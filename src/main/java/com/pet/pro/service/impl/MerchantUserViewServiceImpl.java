@@ -7,9 +7,9 @@ import com.pet.pro.mapper.MerchantUserViewMapper;
 import org.springframework.stereotype.Service;
 
 /**
-* @author YehWang
+* @author 10162
 * @description 针对表【merchant_user_view】的数据库操作Service实现
-* @createDate 2023-07-12 19:47:36
+* @createDate 2023-07-13 10:55:03
 */
 @Service
 public class MerchantUserViewServiceImpl extends ServiceImpl<MerchantUserViewMapper, MerchantUserView>
