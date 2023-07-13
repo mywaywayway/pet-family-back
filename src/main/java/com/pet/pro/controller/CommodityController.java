@@ -16,15 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * <p>
- * 商品信息 前端控制器
- * </p>
- *
- * @author My-way
- * @since 2023-07-10 18:51:02
- */
-@RestController
+
+@RestController("CommodityController")
 @RequestMapping("/commodity-entity")
 public class CommodityController {
 

@@ -10,15 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Random;
 import java.util.UUID;
 
-/**
- * <p>
- * 申请审核表 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 14:38:03
- */
-@RestController
+
+@RestController("AuditController")
 @RequestMapping("/audit-entity")
 public class AuditController {
 

@@ -9,14 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 商店信息 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 09:32:38
- */
+
 @RestController("ShopController")
 @CrossOrigin
 @RequestMapping("/shop-entity")

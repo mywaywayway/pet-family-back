@@ -13,15 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * <p>
- * 商品类别 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 09:32:38
- */
-@RestController
+
+@RestController("CommodityTypeController")
 @RequestMapping("/commodity-type-entity")
 public class CommodityTypeController {
 

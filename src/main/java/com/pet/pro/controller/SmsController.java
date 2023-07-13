@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @CrossOrigin
-@RestController
+@RestController("SmsController")
 @RequestMapping("/sms")
 public class SmsController {
     /**

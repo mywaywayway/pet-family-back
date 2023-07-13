@@ -10,7 +10,7 @@ import com.pet.pro.service.MerchantUserViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController("MerchantUserViewController")
 @RequestMapping("/merchant-user-view-entity")
 @CrossOrigin
 public class MerchantUserViewController {

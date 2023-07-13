@@ -12,15 +12,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- * 登录用户 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 09:32:38
- */
-@RestController
+
+@RestController("LoginController")
 @RequestMapping("/login-entity")
 @CrossOrigin
 public class LoginController {
