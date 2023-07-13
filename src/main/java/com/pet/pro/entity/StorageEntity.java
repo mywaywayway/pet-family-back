@@ -39,7 +39,7 @@ public class StorageEntity {
 
     @ApiModelProperty("库存数量")
     @TableField("quantity")
-    private Double quantity;
+    private Integer quantity;
 
 
 }

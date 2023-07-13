@@ -27,6 +27,7 @@ public class ComGoodsServiceImpl extends ServiceImpl<ComGoodsMapper, ComGoodsVie
         return comGoodsMapper.selectList(Wrappers.<ComGoodsView>lambdaQuery().eq(ComGoodsView::getShopId,shopId));
     }
 
+
 }
 
 

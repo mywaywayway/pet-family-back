@@ -6,6 +6,8 @@ import com.pet.pro.service.BrandService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 品牌信息 服务实现类
@@ -17,4 +19,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class BrandServiceImpl extends ServiceImpl<BrandMapper, BrandEntity> implements BrandService {
 
+
+    @Override
+    public List<BrandEntity> GetAllBrand(){
+        return baseMapper.selectList(null);
+    }
 }

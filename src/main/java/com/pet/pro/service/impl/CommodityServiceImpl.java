@@ -45,4 +45,39 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public List<CommodityEntity> selectCommodityByShopId(int shopId) {
         return commodityMapper.selectList(Wrappers.<CommodityEntity>lambdaQuery().eq(CommodityEntity::getShopId,shopId));
     }
+
+    /**
+     * 根据商品id修改商品信息
+     * @param commodityEntity 商品实体
+     * @return 1?0 1：更新成功 0：更新失败
+     * @see com.pet.pro.service.CommodityService#updateCommodityById(CommodityEntity)
+     */
+    @Override
+    public int updateCommodityById(CommodityEntity commodityEntity) {
+        return commodityMapper.updateById(commodityEntity);
+    }
+
+
+    /**
+     * 根据商品id查询商品信息
+     * @param commodityId 商品id
+     * @return 商品列表
+     * @see com.pet.pro.service.CommodityService#selectCommodityById(int)
+     */
+    @Override
+    public CommodityEntity selectCommodityById(int commodityId) {
+        return commodityMapper.selectById(commodityId);
+    }
+
+    /**
+     * 根据商品id删除商品
+     * @param commodityId 商品id
+     * @return 1?0 1：删除成功 0：删除失败
+     * @see com.pet.pro.service.CommodityService#deleteCommodityById(int)
+     */
+    @Override
+    public int deleteCommodityById(int commodityId) {
+        return commodityMapper.deleteById(commodityId);
+    }
+
 }

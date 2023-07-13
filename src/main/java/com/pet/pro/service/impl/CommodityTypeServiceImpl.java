@@ -6,6 +6,8 @@ import com.pet.pro.service.CommodityTypeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 商品类别 服务实现类
@@ -17,4 +19,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommodityTypeServiceImpl extends ServiceImpl<CommodityTypeMapper, CommodityTypeEntity> implements CommodityTypeService {
 
+
+
+    @Override
+
+    public List<CommodityTypeEntity> selectAllCommodityType() {
+        return baseMapper.selectList(null);
+    }
 }
