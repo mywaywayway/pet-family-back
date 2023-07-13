@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pet.pro.entity.views.ComGoodsView;
 import com.pet.pro.mapper.ComGoodsMapper;
 import com.pet.pro.service.ComGoodsService;
+import com.pet.pro.service.ComGoodsService;
+import com.pet.pro.mapper.ComGoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

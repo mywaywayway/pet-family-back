@@ -12,17 +12,17 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 登录
+ * 登录用户
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-12 09:32:38
  */
 @Getter
 @Setter
 @Accessors(chain = true)
 @TableName("login")
-@ApiModel(value = "LoginEntity对象", description = "登录")
+@ApiModel(value = "LoginEntity对象", description = "登录用户")
 public class LoginEntity {
 
     @ApiModelProperty("登录编号")

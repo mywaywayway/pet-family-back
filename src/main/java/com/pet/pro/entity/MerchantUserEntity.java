@@ -4,46 +4,41 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
+ * <p>
  * 商家用户
- * @TableName merchant_user
+ * </p>
+ *
+ * @author  My-way
+ * @since 2023-07-12 09:32:38
  */
-@TableName(value ="merchant_user")
-@Data
-public class MerchantUserEntity implements Serializable {
-    /**
-     * 商家用户编号
-     */
+@Getter
+@Setter
+@Accessors(chain = true)
+@TableName("merchant_user")
+@ApiModel(value = "MerchantUserEntity对象", description = "商家用户")
+public class MerchantUserEntity {
+
     @ApiModelProperty("商家用户编号")
-    @TableId(value = "merchant_user_Id", type = IdType.AUTO)
+    @TableId(value = "merchant_user_id", type = IdType.AUTO)
     private Integer merchantUserId;
 
-    /**
-     * 商家名称
-     */
     @ApiModelProperty("商家名称")
-    @TableField("`merchant_name`")
+    @TableField("merchant_name")
     private String merchantName;
 
-    /**
-     * 商家地址
-     */
     @ApiModelProperty("商家地址")
-    @TableField("`merchant_address`")
+    @TableField("merchant_address")
     private String merchantAddress;
 
-    /**
-     * 登录编号
-     */
     @ApiModelProperty("登录编号")
     @TableField("login_id")
     private Integer loginId;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

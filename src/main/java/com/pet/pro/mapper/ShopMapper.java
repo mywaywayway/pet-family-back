@@ -9,11 +9,11 @@ import java.util.List;
 
 /**
  * <p>
- * 商家信息 Mapper 接口
+ * 商店信息 Mapper 接口
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-12 09:32:38
  */
 @Mapper
 public interface ShopMapper extends BaseMapper<ShopEntity> {

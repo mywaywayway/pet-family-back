@@ -62,18 +62,20 @@ public class ComGoodsView implements Serializable {
     /**
      * 销量
      */
-    @TableField("sale_volume")
     private Integer saleVolume;
-
     /**
      * 店铺名称
      */
-    @TableField("shop_name")
     private String shopName;
-
     /**
      * 店铺id
      */
-    @TableField("shop_id")
     private Integer shopId;
+
+    /**
+     * 商品状态
+     */
+    private String state;
+
+
 }

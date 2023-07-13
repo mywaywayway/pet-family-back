@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author  My-way
- * @since 2023-07-10 18:51:02
+ * @since 2023-07-12 09:32:38
  */
 @Getter
 @Setter
@@ -36,6 +36,9 @@ public class BrandEntity {
     @ApiModelProperty("品牌介绍")
     @TableField("introduce")
     private String introduce;
+
+    @TableField("brand_avatar_url")
+    private String brandAvatarUrl;
 
 
 }
