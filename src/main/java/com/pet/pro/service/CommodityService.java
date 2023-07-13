@@ -2,6 +2,9 @@ package com.pet.pro.service;
 
 import com.pet.pro.entity.CommodityEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.pet.pro.entity.DTO.ComCount;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,4 +24,11 @@ public interface CommodityService extends IService<CommodityEntity> {
      */
     int addCommodity(CommodityEntity commodityEntity);
 
+    /**
+     * 根据商店id进行商品种类查询
+     * @param shopId    商店id
+     *                  @return 商品种类
+     *                  @see com.pet.pro.service.impl.CommodityServiceImpl#getCommodityTypeByShopId(int)
+     */
+    List<ComCount> getCommodityTypeByShopId(int shopId);
 }

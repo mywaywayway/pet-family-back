@@ -18,25 +18,25 @@ public class MerchantUserView implements Serializable {
      * 商家用户编号
      */
     @TableField(value = "merchant_user_id")
-    private Integer merchant_user_id;
+    private Integer merchantUserId;
 
     /**
      * 商家名称
      */
     @TableField(value = "merchant_name")
-    private String merchant_name;
+    private String merchantName;
 
     /**
      * 商家地址
      */
     @TableField(value = "merchant_address")
-    private String merchant_address;
+    private String merchantAddress;
 
     /**
      * 登录编号
      */
     @TableField(value = "login_id")
-    private Integer login_id;
+    private Integer loginId;
 
     /**
      * 用户名

@@ -26,9 +26,15 @@ public class ComGoodsServiceImpl extends ServiceImpl<ComGoodsMapper, ComGoodsVie
         this.comGoodsMapper = comGoodsMapper;
     }
 
+    @Override
     public List<ComGoodsView> getComGoodsListByShopId(int shopId) {
         return comGoodsMapper.selectList(Wrappers.<ComGoodsView>lambdaQuery().eq(ComGoodsView::getShopId, shopId));
     }
+
+//    @Override
+//    public List<ComGoodsView> getComGoodsByShopId(int shopId) {
+//        return comGoodsMapper.selectList(Wrappers.<ComGoodsView>lambdaQuery().eq(ComGoodsView::getShopId, shopId));
+//    }
 }
 
 

@@ -51,19 +51,37 @@ public class CommodityController {
     }
 
     /**
-     * 根据商户id查询商户所有商品具体信息
+     * 根据商店id查询商店所有商品具体信息
      *
-     * @param merchantId 商户id
-     * @return Result<?> 商户所有商品具体信息
+     * @param shopId 商店id
+     * @return Result<?> 商店所有商品具体信息
      */
     @ResponseBody
-    @GetMapping("/getCommodityByMerchantId/{merchantId}")
-    public Result<?> getCommodityByMerchantId(@PathVariable("merchantId") Integer merchantId) {
-        if (merchantId != null) {
-            return Result.success(this.comGoodsServiceImpl.getComGoodsListByShopId(merchantId));
+    @GetMapping("/getCommodityByShopId/{shopId}")
+    public Result<?> getCommodityByShopId(@PathVariable("shopId") Integer shopId) {
+        if (shopId != null) {
+            return Result.success(this.comGoodsServiceImpl.getComGoodsListByShopId(shopId));
         } else {
             return Result.fail("查询条件不能为空");
         }
     }
+
+    /**
+     * 根据商店id进行商品种类查询
+     *
+     * @param shopId 商店id
+     * @return 商品种类
+     */
+    @ResponseBody
+    @PostMapping("/getCommodityTypeByShopId/{shopId}")
+    public Result<?> getCommodityTypeByShopId(@PathVariable("shopId") Integer shopId) {
+        if (shopId != null) {
+            return Result.success(this.commodityServiceImpl.getCommodityTypeByShopId(shopId));
+        } else {
+            return Result.fail("查询条件不能为空");
+        }
+    }
+
+
 }
 

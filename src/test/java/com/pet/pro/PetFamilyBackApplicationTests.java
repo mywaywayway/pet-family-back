@@ -2,6 +2,7 @@ package com.pet.pro;
 
 import com.pet.pro.mapper.ComGoodsMapper;
 import com.pet.pro.mapper.MerchantUserEntityMapper;
+import com.pet.pro.service.impl.CommodityServiceImpl;
 import com.pet.pro.service.impl.MerchantUserEntityServiceImpl;
 import com.pet.pro.service.impl.RegularUserEntityServiceImpl;
 import jakarta.annotation.Resource;
@@ -24,9 +25,12 @@ class PetFamilyBackApplicationTests {
     @Resource
     private MerchantUserEntityServiceImpl merchantUserEntityService;
 
+    @Resource
+    CommodityServiceImpl commodityService;
+
     @Test
     void contextLoads() {
-        System.out.println(merchantUserEntityService.selectMerchantUserByMerchantId(63201).toString());
+        System.out.println(commodityService.getCommodityTypeByShopId(1));
     }
 
 }
