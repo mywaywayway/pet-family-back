@@ -47,13 +47,13 @@ public class CommodityController {
     public Result<?> addCommodity(@RequestBody AddCommodityDTO addCommodityDTO){
 
         UUID uuid = UUID.randomUUID();
-        commodityServiceImpl.save(addCommodityDTO.getCommodity());
+        commodityServiceImpl.addCommodity(addCommodityDTO.getCommodity());
         StorageEntity storage = new StorageEntity();
         storage.setCommodityId(addCommodityDTO.getCommodity().getId());
         storage.setStorageId(uuid.toString());
         storage.setWarehouseId(addCommodityDTO.getWarehouseId());
-        storage.setQuantity(addCommodityDTO.getNum());
-        storageServiceImpl.save(storage);
+        storage.setQuantity(addCommodityDTO.getQuantity());
+        storageServiceImpl.addStorage(storage);
         return Result.success();
     }
 
