@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order-form-entity")
 public class OrderFormController {
 
-    @Autowired
     private OrderFormMapper orderFormMapper;
+    @Autowired
+    public void setOrderFormMapper(OrderFormMapper orderFormMapper) {
+        this.orderFormMapper = orderFormMapper;
+    }
 
 
     @ApiOperation("用户下单")

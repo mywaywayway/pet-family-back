@@ -4,14 +4,10 @@ package com.pet.pro.controller;
 import com.pet.pro.Result;
 import com.pet.pro.entity.StorageEntity;
 import com.pet.pro.service.impl.StorageServiceImpl;
-import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.pet.pro.Result;
-import com.pet.pro.entity.StorageEntity;
 import com.pet.pro.mapper.StorageMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,8 +60,11 @@ public class StorageController {
             return Result.fail("添加失败");
         }
     }
-    @Autowired
     private StorageMapper storageMapper;
+    @Autowired
+    public void setStorageMapper(StorageMapper storageMapper){
+        this.storageMapper = storageMapper;
+    }
 
     @GetMapping("/getStorageById/{commodityId}")
     public Result<?> getStorageById(@PathVariable Integer commodityId){

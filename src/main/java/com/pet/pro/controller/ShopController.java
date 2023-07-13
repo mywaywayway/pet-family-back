@@ -2,15 +2,11 @@ package com.pet.pro.controller;
 
 
 import com.pet.pro.entity.ShopEntity;
-import com.pet.pro.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.service.impl.ShopServiceImpl;
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,11 +36,6 @@ public class ShopController {
             return null;
         else
             return shopService.getBaseMapper().selectShopByMerchantId(MerchantId);
-    }
-    ShopService shopService;
-    @Autowired
-    public void setShopService(ShopService shopService){
-        this.shopService = shopService;
     }
 
 
