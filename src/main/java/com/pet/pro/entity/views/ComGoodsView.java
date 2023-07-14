@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * @author : Yaxin-Wang
  * @version : v1.0.0
- * @since : 2023/7/11
+ * @since : 2023/7/11audit
  */
 @Data
 @TableName(value ="com_goods")
