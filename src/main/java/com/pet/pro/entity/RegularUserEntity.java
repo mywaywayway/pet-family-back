@@ -37,5 +37,13 @@ public class RegularUserEntity {
     @TableField("login_id")
     private Integer loginId;
 
+    @ApiModelProperty("姓名")
+    @TableField("regular_name")
+    private String regularName;
+
+    @ApiModelProperty("昵称")
+    @TableField("nickname")
+    private String nickname;
+
 
 }

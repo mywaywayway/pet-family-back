@@ -1,5 +1,6 @@
 package com.pet.pro.mapper;
 
+import com.github.yulichang.base.MPJBaseMapper;
 import com.pet.pro.entity.LoginEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2023-07-12 09:32:38
  */
 @Mapper
-public interface LoginMapper extends BaseMapper<LoginEntity> {
+public interface LoginMapper extends MPJBaseMapper<LoginEntity> {
 
 }

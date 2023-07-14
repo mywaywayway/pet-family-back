@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pet.pro.mapper.MerchantUserViewMapper">
+
+    <resultMap id="BaseResultMap" type="com.pet.pro.entity.views.MerchantUserView">
+            <result property="merchant_user_id" column="merchant_user_id" jdbcType="INTEGER"/>
+            <result property="merchant_name" column="merchant_name" jdbcType="VARCHAR"/>
+            <result property="merchant_address" column="merchant_address" jdbcType="VARCHAR"/>
+            <result property="login_id" column="login_id" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        merchant_user_id,merchant_name,merchant_address,
+        login_id,username,password,
+        gender,avatar,phone,
+        email
+    </sql>
+</mapper>

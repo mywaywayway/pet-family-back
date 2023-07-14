@@ -1,13 +1,17 @@
 package com.pet.pro.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.CommodityEntity;
+import com.pet.pro.service.impl.ComGoodsServiceImpl;
 import com.pet.pro.entity.DTO.AddCommodityDTO;
 import com.pet.pro.entity.StorageEntity;
 import com.pet.pro.entity.views.ComGoodsView;
+import com.pet.pro.mapper.CommodityMapper;
 import com.pet.pro.service.impl.ComGoodsServiceImpl;
 import com.pet.pro.service.impl.CommodityServiceImpl;
+import com.pet.pro.service.impl.StorageServiceImpl;
 import com.pet.pro.service.impl.StorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,24 +19,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * <p>
- * 商品信息 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-10 18:51:02
- */
-@RestController
+
+@RestController("CommodityController")
 @RequestMapping("/commodity-entity")
 public class CommodityController {
 
 
     private CommodityServiceImpl commodityServiceImpl;
     private ComGoodsServiceImpl comGoodsServiceImpl;
-
     private StorageServiceImpl storageServiceImpl;
-
     @Autowired
     public void setStorageServiceImpl(StorageServiceImpl storageServiceImpl) {
         this.storageServiceImpl = storageServiceImpl;
@@ -45,6 +40,10 @@ public class CommodityController {
     public void setComGoodsServiceImpl(ComGoodsServiceImpl comGoodsServiceImpl) {
         this.comGoodsServiceImpl = comGoodsServiceImpl;
     }
+
+    @Autowired
+    private CommodityMapper commodityMapper;
+
     /**
      * 添加商品
      * @param addCommodityDTO 增加的商品和库存实体信息
@@ -119,22 +118,75 @@ public class CommodityController {
     }
 
     /**
-     * 根据商品id删除商品信息
-     * @param commodityId 商品id
-     * @return Result<?>  Result.code=200 删除成功
+     * 根据商店id查询商店所有商品具体信息
+     *
+     * @param shopId 商店id
+     * @return Result<?> 商店所有商品具体信息
      */
-    @GetMapping("/deleteCommodityById/{commodityId}")
-    public Result<?> deleteCommodityById(@PathVariable int commodityId){
-        int flag=commodityServiceImpl.deleteCommodityById(commodityId);
-        if(flag==1){
-            return Result.success("删除成功");
-        }else {
-            return Result.fail("删除失败");
+    @ResponseBody
+    @GetMapping("/getCommodityByShopId/{shopId}")
+    public Result<?> getCommodityByShopId(@PathVariable("shopId") Integer shopId) {
+        if (shopId != null) {
+            return Result.success(this.comGoodsServiceImpl.getComGoodsListByShopId(shopId));
+        } else {
+            return Result.fail("查询条件不能为空");
+        }
+    }
+
+    /**
+     * 根据商店id进行商品种类查询
+     *
+     * @param shopId 商店id
+     * @return 商品种类
+     */
+    @ResponseBody
+    @PostMapping("/getCommodityTypeByShopId/{shopId}")
+    public Result<?> getCommodityTypeByShopId(@PathVariable("shopId") Integer shopId) {
+        if (shopId != null) {
+            return Result.success(this.commodityServiceImpl.getCommodityTypeByShopId(shopId));
+        } else {
+            return Result.fail("查询条件不能为空");
         }
     }
 
 
 
+    /** DoubleHong
+     * 获取所有的商品视图
+     * @return Result<?>  Result.data=商品视图信息列表
+     */
+    @GetMapping("/getAllComGoodsView")
+    public Result<List<ComGoodsView>> getAllComGoodsView(){
+        return Result.success(comGoodsServiceImpl.getAllGoods());
+    }
+
+
+//何栋梁
+
+    @PostMapping("/getAllCommdities")
+    public Result<?> getAllCommodities(){
+        LambdaQueryWrapper<CommodityEntity> qurery = new LambdaQueryWrapper<>();
+        qurery.like(CommodityEntity::getName,"");
+        List<CommodityEntity> commodityEntities = commodityMapper.selectList(qurery);
+        return Result.success(commodityEntities);
+    }
+
+    @GetMapping("/getById/{id}")
+    public Result<?> getById(@PathVariable String id){
+        LambdaQueryWrapper<CommodityEntity> query = new LambdaQueryWrapper<>();
+        query.eq(CommodityEntity::getId, id);
+        CommodityEntity commodityEntity = commodityMapper.selectOne(query);
+        return Result.success(commodityEntity);
+    }
+
+    @PostMapping("/getCommdityByName/{name}")
+    public Result<?> getCommodityByName(@PathVariable String name){
+        LambdaQueryWrapper<CommodityEntity> query = new LambdaQueryWrapper<>();
+        query.like(CommodityEntity::getName, name);
+        List<CommodityEntity> commodityEntities = commodityMapper.selectList(query);
+        return Result.success(commodityEntities);
+    }
+//何栋梁
 
 }
 
