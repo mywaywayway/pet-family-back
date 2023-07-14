@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * @author : Yaxin-Wang
  * @version : v1.0.0
- * @since : 2023/7/11audit
+ * @since : 2023/7/11
  */
 @Data
 @TableName(value ="com_goods")
