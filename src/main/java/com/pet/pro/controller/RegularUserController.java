@@ -1,6 +1,8 @@
 package com.pet.pro.controller;
 
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.RegularUserEntity;
@@ -41,6 +43,16 @@ public class RegularUserController {
         return Result.success(list);
     }
 
+
+    @PostMapping("/getUserInfo/{token}")
+    public Result<?> getInfo(@PathVariable String token){
+        DecodedJWT decode = JWT.decode(token);
+        String username = decode.getClaim("username").asString();
+        QueryWrapper<RegularUserView> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username);
+        RegularUserView regularUserView = regularUserViewMapper.selectOne(wrapper);
+        return Result.success(regularUserView,"个人信息");
+    }
 
 }
 
