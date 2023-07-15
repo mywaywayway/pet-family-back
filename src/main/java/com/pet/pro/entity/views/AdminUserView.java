@@ -18,19 +18,19 @@ public class AdminUserView implements Serializable {
      * 管理员编号
      */
     @TableField(value = "administrator_id")
-    private Integer administrator_id;
+    private Integer administratorId;
 
     /**
      * 用户权限
      */
     @TableField(value = "user_rights")
-    private String user_rights;
+    private String userRights;
 
     /**
      * 登录编号
      */
     @TableField(value = "login_id")
-    private Integer login_id;
+    private Integer loginId;
 
     /**
      * 用户名
