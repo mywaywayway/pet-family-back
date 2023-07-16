@@ -26,4 +26,5 @@ public class ShoppingCartViewServiceImpl extends ServiceImpl<ShoppingCartViewMap
     public List<ShoppingCartViewEntity> getShoppingCartViewListByUserId(Integer userId) {
         return shoppingCartViewMapper.selectList(Wrappers.<ShoppingCartViewEntity>lambdaQuery().eq(ShoppingCartViewEntity::getRegularUserId,userId));
     }
+
 }
