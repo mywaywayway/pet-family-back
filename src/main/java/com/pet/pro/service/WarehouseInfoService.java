@@ -17,7 +17,7 @@ public interface WarehouseInfoService extends IService<WarehouseInfoEntity> {
 
     /**
      * 得到所有的仓库信息
-     * @param 空
+     * @param
      * @return  仓库信息列表
      * @see com.pet.pro.service.impl.WarehouseInfoServiceImpl#selectAllWarehouseInfo(WarehouseInfoEntity)
      */
