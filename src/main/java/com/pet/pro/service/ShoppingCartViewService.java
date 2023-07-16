@@ -22,7 +22,7 @@ public interface ShoppingCartViewService extends IService<ShoppingCartViewEntity
      * @param shoppingCartId 购物车Id
      * @return int 1？0 1表示删除成功，0表示删除失败
      */
-    public int deleteShoppingCartViewByUserId(Integer shoppingCartId);
+    public int deleteShoppingCartViewById(Integer shoppingCartId);
 
 
 }
