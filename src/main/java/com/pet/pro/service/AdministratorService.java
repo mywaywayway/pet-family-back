@@ -1,7 +1,12 @@
 package com.pet.pro.service;
 
+import com.pet.pro.Result;
 import com.pet.pro.entity.AdministratorEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.pet.pro.entity.ShopEntity;
+import com.pet.pro.entity.views.ComGoodsView;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +18,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AdministratorService extends IService<AdministratorEntity> {
 
+
+    //商品下架
+    Result<List<ComGoodsView>> takeOffCommodityById(int commodityId,int currentShopId);
+
+    //关闭店铺
+    Result<List<ShopEntity>> closeShopById(int shopId,int currentMerchantId);
 }

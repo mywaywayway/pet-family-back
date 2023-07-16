@@ -73,7 +73,7 @@ public class LoginController {
             String secret = "cg";
             String token = JWT.create().withClaim("username",username).withClaim("phone",phone).
                     withClaim("permission",permission).sign(Algorithm.HMAC256(secret));
-            return Result.success(token,"登录成功");
+            return Result.success(token,permission);
         }
     }
 

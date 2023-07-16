@@ -12,6 +12,7 @@ import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.entity.views.ComGoodsView;
 import com.pet.pro.entity.views.MerchantUserView;
 import com.pet.pro.mapper.*;
+import com.pet.pro.service.AdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,7 +49,14 @@ public class AdministratorController {
     ComGoodsMapper comGoodsMapper;
     @Autowired
     public void setComGoodsMapper(ComGoodsMapper comGoodsMapper){
+
         this.comGoodsMapper = comGoodsMapper;
+    }
+
+    AdministratorService administratorService;
+    @Autowired
+    public void setAdministratorService(AdministratorService administratorService){
+        this.administratorService = administratorService;
     }
 
     /** DoubleHong
@@ -65,10 +73,20 @@ public class AdministratorController {
         return Result.success(shopMapper.selectList(new QueryWrapper<ShopEntity>().eq("merchant_id",merchantId)));
     }
 
+
     @GetMapping("/getComGoodsByShopId/{shopId}")
     public Result<List<ComGoodsView>> getComGoodsByShopId(@PathVariable String shopId){
         return Result.success(comGoodsMapper.selectList(new QueryWrapper<ComGoodsView>().eq("shop_id",shopId)));
     }
 
+    @GetMapping("/takeOffCommodityById/{commodityId},{currentShopId}")
+    public Result<List<ComGoodsView>> takeOffCommodityById(@PathVariable int commodityId, @PathVariable int currentShopId){
+        return administratorService.takeOffCommodityById(commodityId,currentShopId);
+    }
+
+    @GetMapping("/closeShopById/{shopId},{currentMerchantId}")
+    public Result<List<ShopEntity>> closeShopById(@PathVariable int shopId, @PathVariable int currentMerchantId){
+        return administratorService.closeShopById(shopId,currentMerchantId);
+    }
 }
 
