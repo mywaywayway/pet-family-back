@@ -17,12 +17,4 @@ public interface ShoppingCartViewService extends IService<ShoppingCartViewEntity
      public List<ShoppingCartViewEntity> getShoppingCartViewListByUserId(Integer userId);
 
 
-    /**
-     * @description: 根据购物车Id来删除购物车商品信息
-     * @param shoppingCartId 购物车Id
-     * @return int 1？0 1表示删除成功，0表示删除失败
-     */
-    public int deleteShoppingCartViewById(Integer shoppingCartId);
-
-
 }

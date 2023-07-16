@@ -27,8 +27,4 @@ public class ShoppingCartViewServiceImpl extends ServiceImpl<ShoppingCartViewMap
         return shoppingCartViewMapper.selectList(Wrappers.<ShoppingCartViewEntity>lambdaQuery().eq(ShoppingCartViewEntity::getRegularUserId,userId));
     }
 
-    @Override
-    public int deleteShoppingCartViewById(Integer shoppingCartId) {
-        return shoppingCartViewMapper.deleteById(shoppingCartId);
-    }
 }
