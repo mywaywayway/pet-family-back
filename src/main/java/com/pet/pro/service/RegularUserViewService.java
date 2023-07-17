@@ -1,5 +1,7 @@
 package com.pet.pro.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.pet.pro.entity.views.MerchantUserView;
 import com.pet.pro.entity.views.RegularUserView;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-07-13 09:46:45
 */
 public interface RegularUserViewService extends IService<RegularUserView> {
+
 
 }

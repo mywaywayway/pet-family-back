@@ -19,7 +19,7 @@ public class RegularUserView implements Serializable {
      * 普通用户编号
      */
     @TableField(value = "regular_user_id")
-    private Integer regular_user_id;
+    private Integer regularUserId;
 
     /**
      * 生日
@@ -31,13 +31,13 @@ public class RegularUserView implements Serializable {
      * 登录编号
      */
     @TableField(value = "login_id")
-    private Integer login_id;
+    private Integer loginId;
 
     /**
      * 用户姓名
      */
     @TableField(value = "regular_name")
-    private String regular_name;
+    private String regularName;
 
     /**
      * 昵称

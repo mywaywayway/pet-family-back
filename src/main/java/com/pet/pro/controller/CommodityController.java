@@ -2,8 +2,10 @@ package com.pet.pro.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.CommodityEntity;
+import com.pet.pro.service.ComGoodsService;
 import com.pet.pro.service.impl.ComGoodsServiceImpl;
 import com.pet.pro.entity.DTO.AddCommodityDTO;
 import com.pet.pro.entity.StorageEntity;
@@ -13,6 +15,7 @@ import com.pet.pro.service.impl.ComGoodsServiceImpl;
 import com.pet.pro.service.impl.CommodityServiceImpl;
 import com.pet.pro.service.impl.StorageServiceImpl;
 import com.pet.pro.service.impl.StorageServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +45,31 @@ public class CommodityController {
     }
 
     @Autowired
+    private ComGoodsService comGoodsService;
+
+    @Autowired
     private CommodityMapper commodityMapper;
+
+
+    @ApiOperation("商品分类")
+    @GetMapping("/getCommodityType/{name}")
+    public Result<?> getCommodityType(@PathVariable String name){
+        QueryWrapper<ComGoodsView> wrapper = new QueryWrapper<>();
+        wrapper.eq("type_name", name);
+        wrapper.eq("state", "上架中");
+        List<ComGoodsView> list = comGoodsService.list(wrapper);
+        return Result.success(list);
+    }
+
+    @ApiOperation("所有商品")
+    @GetMapping("/getCommodityInfo")
+    public Result<?> getCommodityType(){
+        QueryWrapper<ComGoodsView> wrapper = new QueryWrapper<>();
+        wrapper.eq("state", "上架中");
+        List<ComGoodsView> list = comGoodsService.list(wrapper);
+        return Result.success(list);
+    }
+
 
     /**
      * 添加商品
@@ -162,7 +189,6 @@ public class CommodityController {
 
 
 //何栋梁
-
     @PostMapping("/getAllCommdities")
     public Result<?> getAllCommodities(){
         LambdaQueryWrapper<CommodityEntity> qurery = new LambdaQueryWrapper<>();

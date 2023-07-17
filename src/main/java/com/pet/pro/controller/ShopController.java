@@ -1,9 +1,11 @@
 package com.pet.pro.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.ShopEntity;
+import com.pet.pro.mapper.ShopMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,23 @@ public class ShopController {
      * @param MerchantId 商家id
      *           @return 店铺信息
      */
+
+    @Autowired
+    private ShopMapper shopMapper;
+
+    @GetMapping("/getSHopInfo/{shopId}")
+    public Result<?> getSHopInfo(@PathVariable String shopId){
+        LambdaQueryWrapper<ShopEntity> query = new LambdaQueryWrapper<>();
+        query.eq(ShopEntity::getId,shopId);
+        ShopEntity shopEntity = shopMapper.selectOne(query);
+        if(shopEntity!=null){
+            return Result.success(shopEntity);
+        }
+        else{
+            return Result.fail();
+        }
+    }
+
     @ResponseBody
     @GetMapping("/selectShopByMerchantId/{MerchantId}")
     public List<ShopEntity> selectShopByMerchantId(@PathVariable Integer MerchantId){

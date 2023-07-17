@@ -1,7 +1,7 @@
 package com.pet.pro.mapper;
 
-import com.pet.pro.entity.views.UserTotalInfoView;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.pet.pro.entity.views.UserTotalInfoViewEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity com.pet.pro.entity/views.UserTotalInfoView
 */
 @Mapper
-public interface UserTotalInfoViewMapper extends BaseMapper<UserTotalInfoView> {
+public interface UserTotalInfoViewMapper extends BaseMapper<UserTotalInfoViewEntity> {
 
 }
 
