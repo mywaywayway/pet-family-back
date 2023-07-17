@@ -10,15 +10,15 @@ import lombok.Setter;
 @Data
 @TableName(value = "shopping_cart_view")    // 表名
 public class ShoppingCartViewEntity {
-    private Integer id;
-    private String name;
-    private String photo;
-    private String introduce;
-    private Double price;
-    private Integer shopId;
-    private Integer regularUserId;
-    private String shoppingCartId;
-    private Integer commodityNumber;
-    private String avatar;
-    private String shopName;
+    private Integer id;   // 主键
+    private String name;  // 商品名称
+    private String photo;  // 商品图片
+    private String introduce;  // 商品介绍
+    private Double price;  // 商品价格
+    private Integer shopId;  // 店铺id
+    private Integer regularUserId;  // 普通用户id
+    private Integer shoppingCartId;  // 购物车id
+    private Integer commodityNumber;  // 商品数量
+    private String avatar;  // 店铺头像
+    private String shopName;  // 店铺名称
 }

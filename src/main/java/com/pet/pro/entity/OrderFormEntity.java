@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * <p>
@@ -32,7 +33,8 @@ public class OrderFormEntity {
 
     @ApiModelProperty("交易时间")
     @TableField("`time`")
-    private LocalDateTime time;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String time;
 
     @ApiModelProperty("交易地址")
     @TableField("address")
