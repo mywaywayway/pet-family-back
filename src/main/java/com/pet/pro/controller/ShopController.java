@@ -58,5 +58,15 @@ public class ShopController {
         return Result.success();
     }
 
+    /**DoubleHong
+     * 根据店铺id查询店铺信息
+     * @param shopId 店铺id
+     * @return 店铺信息
+     */
+    @GetMapping("/getShopById/{shopId}")
+    public Result<?> getShopById(@PathVariable int shopId){
+        return shopService.getShopById(shopId);
+    }
+
 }
 

@@ -1,5 +1,6 @@
 package com.pet.pro.service;
 
+import com.pet.pro.Result;
 import com.pet.pro.entity.ShopEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -17,4 +18,6 @@ public interface ShopService extends IService<ShopEntity> {
 
 
     List<ShopEntity> getShopByMerchantId(int merchantId);
+
+    Result<?> getShopById(int shopId);
 }

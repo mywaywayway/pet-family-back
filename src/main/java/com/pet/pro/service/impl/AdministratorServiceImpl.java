@@ -4,12 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.AdministratorEntity;
 import com.pet.pro.entity.CommodityEntity;
+import com.pet.pro.entity.LoginEntity;
 import com.pet.pro.entity.ShopEntity;
+import com.pet.pro.entity.views.AdminUserView;
 import com.pet.pro.entity.views.ComGoodsView;
-import com.pet.pro.mapper.AdministratorMapper;
-import com.pet.pro.mapper.ComGoodsMapper;
-import com.pet.pro.mapper.CommodityMapper;
-import com.pet.pro.mapper.ShopMapper;
+import com.pet.pro.mapper.*;
 import com.pet.pro.service.AdministratorService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,12 @@ public class AdministratorServiceImpl extends ServiceImpl<AdministratorMapper, A
         this.shopMapper = shopMapper;
     }
 
+    LoginMapper loginMapper;
+    @Autowired
+    public void setLoginMapper(LoginMapper loginMapper){
+        this.loginMapper = loginMapper;
+    }
+
     /**
      * @author DoubleHong;
      *  获取所有商品并返回该店铺下新的商品信息
@@ -80,6 +85,21 @@ public class AdministratorServiceImpl extends ServiceImpl<AdministratorMapper, A
         //更新该店铺
         shopMapper.updateById(shopEntity);
         return Result.success(shopMapper.selectList(new QueryWrapper<ShopEntity>().eq("merchant_id",currentMerchantId)));
+    }
+
+    /**DoubleHong
+     * 修改管理员信息
+     * @param adminUserView 管理员信息
+     * @return 修改结果
+     */
+    @Override
+    public Result<?> updateAdmin(AdminUserView adminUserView) {
+        LoginEntity loginEntity = loginMapper.selectById(adminUserView.getLoginId());
+        loginEntity.setGender(adminUserView.getGender());
+        loginEntity.setPhone(adminUserView.getPhone());
+        loginEntity.setEmail(adminUserView.getEmail());
+        loginMapper.updateById(loginEntity);
+        return Result.success(adminUserView,"success");
     }
 
 }

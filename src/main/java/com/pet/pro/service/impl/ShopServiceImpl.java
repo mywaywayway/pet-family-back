@@ -1,6 +1,7 @@
 package com.pet.pro.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.pet.pro.Result;
 import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.mapper.ShopMapper;
 import com.pet.pro.service.ShopService;
@@ -31,5 +32,10 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, ShopEntity> impleme
     @Override
     public List<ShopEntity> getShopByMerchantId(int merchantId) {
         return shopMapper.selectList(new QueryWrapper<ShopEntity>().eq("merchant_id",merchantId));
+    }
+
+    @Override
+    public Result<?> getShopById(int shopId) {
+        return Result.success(shopMapper.selectById(shopId),"success");
     }
 }
