@@ -1,5 +1,6 @@
 package com.pet.pro.service;
 
+import com.pet.pro.Result;
 import com.pet.pro.entity.views.RegularUserView;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface RegularUserViewService extends IService<RegularUserView> {
 
+    Result<?> updateRegularUser(RegularUserView regularUserView);
 }

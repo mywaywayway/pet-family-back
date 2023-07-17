@@ -30,4 +30,12 @@ public class MerchantUserViewController {
         MerchantUserView oneInfo = merchantUserViewService.getOne(wrapper);
         return Result.success(oneInfo,"个人信息");
     }
+
+    @GetMapping("/getMerchantUserView/{id}")
+    public Result<?> getMerchantUserView(@PathVariable Integer id){
+        QueryWrapper<MerchantUserView> wrapper = new QueryWrapper<>();
+        wrapper.eq("merchant_user_id",id);
+        MerchantUserView oneInfo = merchantUserViewService.getOne(wrapper);
+        return Result.success(oneInfo,"个人信息");
+    }
 }
