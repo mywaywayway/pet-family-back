@@ -51,9 +51,11 @@ public class OrderFormController {
     @ApiOperation("用户下单")
     @PostMapping("/submitOrder")
     public Result<?> getOrder(@RequestBody OrderFormEntity order){
+        System.out.println(order.getTime());
+        order.setTime(order.getTime().plusHours(8));
         if(orderFormMapper.insert(order)==1){
-
-            return Result.success();
+            Integer id = order.getId();
+            return Result.success(id);
         }
         else{
             return Result.fail();
@@ -235,5 +237,19 @@ public class OrderFormController {
         orderFormService.updateById(orderFormEntity);
         return Result.success();
     }
+
+    //删除订单
+    @GetMapping("/deleteOrder/{orderId}")
+    public Result<?> deleteOrder(@PathVariable Integer orderId){
+        if(orderFormMapper.deleteById(orderId)==1){
+            return Result.success();
+        }
+        else{
+            return Result.fail();
+        }
+
+    }
+
+
 }
 

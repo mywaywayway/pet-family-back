@@ -38,19 +38,13 @@ public class RegularUserController {
         this.regularUserViewServiceImpl = regularUserViewServiceImpl;
     }
 
+
+
+
     @GetMapping("/getRegularUserById/{loginId}")
     public RegularUserEntity getRegularUserById(@PathVariable int loginId){
         return regularUserMapper.selectOne(new QueryWrapper<RegularUserEntity>().eq("login_id",loginId));
     }
-
-
-    //查询所有用户
-    @GetMapping("/getAllRegularUser")
-    public Result<List<RegularUserView>> getAllRegularUser(){
-        List<RegularUserView> list = regularUserViewMapper.selectList(null);
-        return Result.success(list);
-    }
-
 
     @PostMapping("/getUserInfo/{token}")
     public Result<?> getInfo(@PathVariable String token){
@@ -61,6 +55,15 @@ public class RegularUserController {
         RegularUserView regularUserView = regularUserViewMapper.selectOne(wrapper);
         return Result.success(regularUserView,"个人信息");
     }
+
+
+    //查询所有用户
+    @GetMapping("/getAllRegularUser")
+    public Result<List<RegularUserView>> getAllRegularUser(){
+        List<RegularUserView> list = regularUserViewMapper.selectList(null);
+        return Result.success(list);
+    }
+
 
     @PostMapping("/updateRegularUser")
     public Result<?> updateRegularUser(@RequestBody RegularUserView regularUserView){
