@@ -4,11 +4,14 @@ package com.pet.pro.controller;
 import com.pet.pro.Result;
 import com.pet.pro.entity.ShoppingCartEntity;
 import com.pet.pro.entity.views.ShoppingCartViewEntity;
+import com.pet.pro.service.ShoppingCartService;
+import com.pet.pro.service.ShoppingCartViewService;
 import com.pet.pro.service.impl.ShoppingCartServiceImpl;
 import com.pet.pro.service.impl.ShoppingCartViewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -48,17 +51,33 @@ public class ShoppingCartController {
         return Result.success(shoppingCartService.getShoppingCartByUserId(userId));
     }
     /**
-     * 根据用户id获取购物车视图信息列表
+     * 根据用户id获取购物车视图信息列表（分店铺）
+     *
      * @param userId 普通用户ID
-     * @return  购物车视图信息列表 List<ShoppingCartViewEntity>
+     * @return 购物车视图信息列表 HashMap<String,List<ShoppingCartViewEntity>>
      */
-    @GetMapping("/getShoppingCartViewByUserId/{userId}")
-    public Result<List<ShoppingCartViewEntity>> getShoppingCartViewByUserId(@PathVariable  Integer userId) {
-        return Result.success(shoppingCartViewService.getShoppingCartViewListByUserId(userId));
+    @ResponseBody
+    @GetMapping("/getShoppingCartViewByUserIdAndStoreId/{userId}")
+    public Result<HashMap<String,List<ShoppingCartViewEntity>>> getCartInfoByUserId(@PathVariable Integer userId) {
+        if (userId == null) {
+            return Result.fail("用户id不能为空");
+        } else {
+            List<ShoppingCartViewEntity> list = shoppingCartViewService.getShoppingCartViewListByUserId(userId);
+            HashMap<String, List<ShoppingCartViewEntity>> map = new HashMap<>();  //<店铺名，购物车视图信息列表>
+            map = list.stream().collect(HashMap::new, (m, v) -> {
+                if (m.containsKey(v.getShopName())) {
+                    m.get(v.getShopName()).add(v);
+                } else {
+                    List<ShoppingCartViewEntity> l = new java.util.ArrayList<>();
+                    l.add(v);
+                    m.put(v.getShopName(), l);
+                }
+            }, HashMap::putAll);
+            return Result.success(map, "获取成功");
+        }
     }
 
-
-
+    
 
 }
 
