@@ -4,8 +4,14 @@ package com.pet.pro.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
+import com.pet.pro.entity.AuditEntity;
+import com.pet.pro.entity.MerchantUserEntity;
 import com.pet.pro.entity.ShopEntity;
+import com.pet.pro.entity.views.MerchantUserView;
 import com.pet.pro.mapper.ShopMapper;
+import com.pet.pro.service.impl.AuditServiceImpl;
+import com.pet.pro.service.impl.MerchantUserServiceImpl;
+import com.pet.pro.service.impl.MerchantUserViewServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +21,7 @@ import com.pet.pro.service.impl.ShopServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController("ShopController")
@@ -27,6 +34,20 @@ public class ShopController {
     @Autowired
     public ShopController(ShopServiceImpl shopService) {
         this.shopService = shopService;
+    }
+
+    private MerchantUserViewServiceImpl merchantUserService;
+
+    @Autowired
+    public void setMerchantUserService(MerchantUserViewServiceImpl merchantUserService) {
+        this.merchantUserService = merchantUserService;
+    }
+
+    private AuditServiceImpl auditServiceImpl;
+
+    @Autowired
+    public void setAuditServiceImpl(AuditServiceImpl auditServiceImpl) {
+        this.auditServiceImpl = auditServiceImpl;
     }
 
     /**
@@ -115,6 +136,17 @@ public class ShopController {
     @PostMapping("/addShop")
     public Result<Integer> addShop(@RequestBody ShopEntity shopEntity){
         if(shopService.saveOrUpdate(shopEntity)){
+            MerchantUserView merchantUserEntity = merchantUserService.getOne(new LambdaQueryWrapper<MerchantUserView>().eq(MerchantUserView::getMerchantUserId,shopEntity.getMerchantId()));
+            UUID uuid = UUID.randomUUID();
+            AuditEntity auditEntity = new AuditEntity();
+            auditEntity.setId(uuid.toString());
+            auditEntity.setAuditState("待审核");
+            auditEntity.setApplicant(merchantUserEntity.getMerchantName());
+            auditEntity.setKeyWord(shopEntity.getId());
+            auditEntity.setContent("申请入住店铺");
+            auditEntity.setApplicationPhone(merchantUserEntity.getPhone());
+            auditEntity.setAuditType("店铺");
+            auditServiceImpl.insertAudit(auditEntity);
             return Result.success(shopEntity.getId());
         }
         else{
