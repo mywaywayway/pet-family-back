@@ -65,7 +65,6 @@ public class OrderFormController {
     @PostMapping("/submitOrder")
     public Result<?> getOrder(@RequestBody OrderFormEntity order){
         System.out.println(order.getTime());
-        order.setTime(order.getTime().plusHours(8));
         if(orderFormMapper.insert(order)==1){
             Integer id = order.getId();
             return Result.success(id);
