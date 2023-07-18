@@ -27,7 +27,7 @@ public class CommentsEntity {
 
     @ApiModelProperty("评价id")
     @TableId(value = "comments_id", type = IdType.AUTO)
-    private Integer commentId;
+    private Integer commentsId;
 
     @ApiModelProperty("评价内容")
     @TableField("`comments_content`")

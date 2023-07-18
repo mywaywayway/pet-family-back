@@ -7,6 +7,7 @@ import com.pet.pro.entity.CommentsEntity;
 import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.mapper.CommentsMapper;
 import com.pet.pro.mapper.ShopMapper;
+import com.pet.pro.service.impl.CommentsServiceImpl;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
