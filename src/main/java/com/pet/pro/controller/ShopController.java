@@ -87,5 +87,40 @@ public class ShopController {
         return shopService.getShopById(shopId);
     }
 
+    /**
+     * 根据店铺id和店铺状态修改店铺状态
+     * @param shopId 店铺id
+     * @param shopStatus 店铺状态
+     *                   @return 成功或失败
+     */
+    @GetMapping("/updateShopStatus/{shopId}/{shopStatus}")
+    public Result<?> updateShopStatus(@PathVariable int shopId,@PathVariable String shopStatus){
+        QueryWrapper<ShopEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",shopId);
+        ShopEntity shopEntity = shopService.getOne(wrapper);
+        shopEntity.setShopStatus(shopStatus);
+        if(shopService.updateById(shopEntity)){
+            return Result.success();
+        }
+        else{
+            return Result.fail();
+        }
+    }
+
+    /**
+     * 申请添加或者修改一个商店信息
+     * @param shopEntity 商店信息
+     *                   @return 成功或失败
+     */
+    @PostMapping("/addShop")
+    public Result<Integer> addShop(@RequestBody ShopEntity shopEntity){
+        if(shopService.saveOrUpdate(shopEntity)){
+            return Result.success(shopEntity.getId());
+        }
+        else{
+            return Result.fail();
+        }
+    }
+
 }
 
