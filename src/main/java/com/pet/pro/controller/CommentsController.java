@@ -56,6 +56,36 @@ public class CommentsController {
 
     @PostMapping("/addComments")
     public Result<?> addComments(@RequestBody CommentsEntity commentsEntity){
+//        System.out.println(commentsEntity);
+//        String oldFileName = commentsEntity.getCommentsPhoto();
+//        Random r = new Random();
+////        String newfilename =commentsEntity.getCommodityId()+"-"+commentsEntity.getOrderId()+oldFileName;
+//        String newfilename =commentsEntity.getCommodityId()+"-"+commentsEntity.getOrderId()+".jpg";
+//        try{
+////阿里云华北2地址
+//            String endpoint = "https://oss-cn-beijing.aliyuncs.com";
+//
+//            String accessKeyId = "LTAI5tSdsiqft5EaFpKXPHpr";
+//
+//            String accessKeyScret ="2CeQq0HYVWBmus49oGVUaFz7iYtSLA";
+//
+//            // 创建OSSClient实例。
+//            OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId,accessKeyScret);
+//
+//            InputStream inputStream = new FileInputStream(oldFileName);
+//
+//            ossClient.putObject("xixi0706",newfilename,inputStream);
+//
+//            ossClient.shutdown();
+//        }
+//        catch (Exception e){
+//            return Result.fail();
+//        }
+//        commentsEntity.setCommentsPhoto("http://xixi0706.oss-cn-beijing.aliyuncs.com/"+newfilename);
+
+        System.out.println("添加评论");
+        System.out.println(commentsEntity);
+
         if(commentsMapper.insert(commentsEntity)==1){
             return Result.success();
         }

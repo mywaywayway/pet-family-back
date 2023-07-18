@@ -78,7 +78,7 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, AuditEntity> impl
             //目标店铺
             ShopEntity shopEntity = shopMapper.selectById(auditEntity.getKeyWord());
             //修改店铺状态
-            shopEntity.setShopStatus("已开业");
+            shopEntity.setShopStatus("营业中");
             shopMapper.updateById(shopEntity);
         }
         //用户变商家暂时没写
@@ -103,7 +103,7 @@ public class AuditServiceImpl extends ServiceImpl<AuditMapper, AuditEntity> impl
             //目标店铺
             ShopEntity shopEntity = shopMapper.selectById(auditEntity.getKeyWord());
             //修改店铺状态
-            shopEntity.setShopStatus("审核未通过");
+            shopEntity.setShopStatus("未通过");
             shopMapper.updateById(shopEntity);
         }
         //用户变商家暂时没写

@@ -20,9 +20,9 @@ import java.util.UUID;
 @RequestMapping("/audit-entity")
 public class AuditController {
 
-    AuditService auditService;
+    AuditServiceImpl auditService;
     @Autowired
-    public void setAuditService(AuditService auditService){
+    public void setAuditService(AuditServiceImpl auditService){
         this.auditService = auditService;
     }
 

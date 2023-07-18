@@ -2,9 +2,12 @@ package com.pet.pro.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.OrderGoodsEntity;
 import com.pet.pro.mapper.OrderGoodsMapper;
+import com.pet.pro.service.OrderGoodsService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 public class OrderGoodsController {
     @Autowired
     private OrderGoodsMapper orderGoodsMapper;
+
+    @Autowired
+    private OrderGoodsService orderGoodsService;
 
     @PostMapping("/addOrderGoods")
 
@@ -38,6 +44,17 @@ public class OrderGoodsController {
         else{
             return Result.fail();
         }
+    }
+
+    @ApiOperation("订单详情状态改为已评价")
+    @GetMapping("pass/{id}")
+    public Result<?> agreeOrder(@PathVariable Integer id){
+        QueryWrapper<OrderGoodsEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",id);
+        OrderGoodsEntity orderGoodsEntity = orderGoodsService.getOne(wrapper);
+        orderGoodsEntity.setState("已评价");
+        orderGoodsService.updateById(orderGoodsEntity);
+        return Result.success();
     }
 }
 
