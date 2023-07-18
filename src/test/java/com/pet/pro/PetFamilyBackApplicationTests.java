@@ -7,6 +7,7 @@ import com.pet.pro.service.impl.MerchantUserEntityServiceImpl;
 import com.pet.pro.service.impl.RegularUserEntityServiceImpl;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
