@@ -3,6 +3,7 @@ package com.pet.pro.service.impl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
 import com.pet.pro.service.OssService;
+import com.pet.pro.utils.MyOssInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,8 +24,8 @@ public class OssUploadServiceImpl implements OssService {
 
         String endpoint = "oss-cn-beijing.aliyuncs.com";
         // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-        String accessKeyId = "LTAI5tQkLc3LNre7ZXLEUGxf";
-        String accessKeySecret = "377qclQ01D8N40AIgOLkoyVJf7Mihq";
+        String accessKeyId = MyOssInfo.username;
+        String accessKeySecret = MyOssInfo.password;
         // 填写Bucket名称，例如examplebucket。
         String bucketName = "cg666";
 

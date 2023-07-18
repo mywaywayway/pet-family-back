@@ -8,11 +8,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author  My-way
@@ -20,6 +21,7 @@ import lombok.experimental.Accessors;
  */
 @Getter
 @Setter
+@ToString
 @Accessors(chain = true)
 @TableName("order_goods")
 @ApiModel(value = "OrderGoodsEntity对象", description = "")
@@ -45,5 +47,8 @@ public class OrderGoodsEntity {
     @TableField("total_price")
     private Double totalPrice;
 
+    @ApiModelProperty("交易状态")
+    @TableField("state")
+    private String state;
 
 }

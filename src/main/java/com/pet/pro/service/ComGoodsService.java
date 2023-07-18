@@ -20,12 +20,7 @@ public interface ComGoodsService extends IService<ComGoodsView> {
      * @see com.pet.pro.service.impl.ComGoodsServiceImpl#getComGoodsListByShopId(int)
      */
     List<ComGoodsView> getComGoodsListByShopId(int shopId);
-    /**
-     * 根据视图ID更改视图信息
-     * @param  comGoodsView 视图实体
-     * @return int 1：更新成功 0：更新失败
-     * @see com.pet.pro.service.impl.ComGoodsServiceImpl#updateComGoodById(ComGoodsView)
-     */
+
 
    List<ComGoodsView> getAllGoods();
 
