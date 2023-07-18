@@ -5,6 +5,8 @@ import com.pet.pro.Result;
 import com.pet.pro.entity.ShoppingCartEntity;
 import com.pet.pro.entity.Vo.CartInfoData;
 import com.pet.pro.entity.views.ShoppingCartViewEntity;
+import com.pet.pro.service.ShoppingCartService;
+import com.pet.pro.service.ShoppingCartViewService;
 import com.pet.pro.service.impl.ShoppingCartServiceImpl;
 import com.pet.pro.service.impl.ShoppingCartViewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +107,8 @@ public class ShoppingCartController {
             return Result.success("删除成功");
         }
     }
+
+    
+
 }
 

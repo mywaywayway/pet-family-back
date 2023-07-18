@@ -7,12 +7,19 @@ import com.pet.pro.entity.CommentsEntity;
 import com.pet.pro.entity.views.CommentsOrderFormEntity;
 import com.pet.pro.mapper.CommentsMapper;
 import com.pet.pro.mapper.CommentsOrderFormMapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.pet.pro.Result;
+import com.pet.pro.entity.views.CommentsOrderFormEntity;
+
+import com.pet.pro.mapper.CommentsOrderFormMapper;
+import com.pet.pro.mapper.CommodityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +36,8 @@ public class CommentsOrderFormController {
    @Autowired
     private CommentsOrderFormMapper commentsOrderFormMapper;
 
+   @Autowired
+   private CommodityMapper commodityMapper;
    @GetMapping("/getCommentsOrder/{commodityId}")
     public Result<?> getCommentsOrder(@PathVariable Integer commodityId){
        LambdaQueryWrapper<CommentsOrderFormEntity> queryWrapper = new LambdaQueryWrapper<>();
@@ -39,6 +48,23 @@ public class CommentsOrderFormController {
        }
        else {
            return Result.fail();
+       }
+   }
+
+   @GetMapping("/getCommentsByShopId/{shopId}")
+    public Result<?> getCommentsByShopId(@PathVariable Integer shopId) {
+       List<CommentsOrderFormEntity> result = new ArrayList<>();
+       List<CommentsOrderFormEntity> commentsEntities = commentsOrderFormMapper.selectList(null);
+       for (int i = 0; i < commentsEntities.size(); i++) {
+           int commodityId = commentsEntities.get(i).getCommodityId();
+           if (commodityMapper.selectById(commodityId).getShopId() == shopId) {
+               result.add(commentsEntities.get(i));
+           }
+       }
+       if (result.size() > 0) {
+           return Result.success(result);
+       } else {
+           return Result.success(200, "该商店暂无评论");
        }
    }
 }
