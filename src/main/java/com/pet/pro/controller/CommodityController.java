@@ -49,6 +49,11 @@ public class CommodityController {
     @Autowired
     private CommodityMapper commodityMapper;
 
+    /**
+     * 根据商品类别名称分类
+     * @param name 商品类别名称
+     * @return Result<?>  Result.data=商品列表
+     */
 
     @ApiOperation("商品分类")
     @GetMapping("/getCommodityType/{name}")
@@ -60,6 +65,10 @@ public class CommodityController {
         return Result.success(list);
     }
 
+    /**
+     * 所有商品
+     * @return Result<?>  Result.data=商品列表
+     */
     @ApiOperation("所有商品")
     @GetMapping("/getCommodityInfo")
     public Result<?> getCommodityType(){

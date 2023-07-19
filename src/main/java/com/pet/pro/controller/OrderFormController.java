@@ -103,7 +103,7 @@ public class OrderFormController {
     /**
      * 根据商家id查询订单
      * @param id 商家id
-     * @return
+     * @return 订单列表
      */
     @ApiModelProperty("查询订单")
     @GetMapping("listOrder/{id}")
@@ -200,6 +200,11 @@ public class OrderFormController {
         return distinctNumbers;
     }
 
+    /**
+     * 商家同意退货
+     * @param id 订单id
+     * @return 是否成功
+     */
 
     @ApiOperation("商家同意退货")
     @GetMapping("passRet/{id}")
@@ -227,6 +232,11 @@ public class OrderFormController {
         return Result.success();
     }
 
+    /**
+     * 商家同意发货
+     * @param id 订单id
+     * @return 是否成功
+     */
     @ApiOperation("商家同意发货")
     @GetMapping("passDeliver/{id}")
     public Result<?> passDeliver(@PathVariable Integer id){
@@ -247,6 +257,11 @@ public class OrderFormController {
         return Result.success();
     }
 
+    /**
+     * 购物车下单
+     * @param shopCarDTO 订单信息
+     * @return  订单信息
+     */
     @ApiOperation("购物车下单")
     @PostMapping("saveOrder")
     public Result<?> saveOrder(@RequestBody ShopCarDTO shopCarDTO) {
@@ -300,6 +315,11 @@ public class OrderFormController {
         return Result.success(orderFormEntityList);
     }
 
+    /**
+     * 付款
+     * @param  list 订单信息
+     * @return 是否成功
+     */
     @ApiOperation("付款")
     @PostMapping("payOrder")
     public Result<?> payOrder(@RequestBody List<OrderFormEntity> list){
@@ -319,6 +339,11 @@ public class OrderFormController {
         return Result.success();
     }
 
+    /**
+     * 删除订单
+     * @param orderId 订单id
+     * @return 是否成功
+     */
     //删除订单
     @GetMapping("/deleteOrder/{orderId}")
     public Result<?> deleteOrder(@PathVariable Integer orderId){
@@ -372,7 +397,7 @@ public class OrderFormController {
     /**
      * 根据用户id查询全部订单
      * @param id 用户id
-     * @return
+     * @return  订单信息
      */
     @ApiOperation("客户查看个人订单")
     @GetMapping("viewOrder/{id}")
@@ -410,7 +435,7 @@ public class OrderFormController {
     /**
      * 根据商家id查询已完成订单
      * @param id 商家id
-     * @return
+     * @return  订单信息
      */
     @ApiModelProperty("查询已完成订单")
     @GetMapping("getFinish/{id}")
@@ -479,6 +504,11 @@ public class OrderFormController {
     }
 
 
+    /**
+     * 用户同意收货
+     * @param id 订单id
+     * @return  是否成功
+     */
     @ApiOperation("用户同意收货")
     @GetMapping("pass/{id}")
     public Result<?> agreeOrder(@PathVariable Integer id){
@@ -498,6 +528,11 @@ public class OrderFormController {
         return Result.success();
     }
 
+    /**
+     * 用户申请退款
+     * @param id 订单id
+     * @return 是否成功
+     */
     @ApiOperation("用户申请退款")
     @GetMapping("requestRefund/{id}")
     public Result<?> requestRefund(@PathVariable Integer id){
@@ -518,6 +553,11 @@ public class OrderFormController {
         return Result.success();
     }
 
+    /**
+     * 用户付款
+     * @param orderId 订单id
+     * @return 是否成功
+     */
     @ApiOperation("付款")
     @GetMapping("/payment/{orderId}")
     public Result<?> payment(@PathVariable Integer orderId){

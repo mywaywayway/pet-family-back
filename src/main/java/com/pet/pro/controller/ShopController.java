@@ -154,5 +154,24 @@ public class ShopController {
         }
     }
 
+    /**
+     * 通过商店id更改商店头像信息
+     * @param shopEntity_1 商店信息
+     *                @return 成功或失败
+     */
+    @PostMapping("/updateShopImg")
+    public Result<?> updateShopImg(@RequestBody ShopEntity shopEntity_1){
+        QueryWrapper<ShopEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("id",shopEntity_1.getId());
+        ShopEntity shopEntity = shopService.getOne(wrapper);
+        shopEntity.setAvatar(shopEntity_1.getAvatar());
+        if(shopService.updateById(shopEntity)){
+            return Result.success();
+        }
+        else{
+            return Result.fail();
+        }
+    }
+
 }
 
