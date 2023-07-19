@@ -123,7 +123,6 @@ public class ShoppingCartController {
      * @return 添加结果
      *
      */
-
     @PostMapping("/addCommodity")
     public Result<?> addCommodity(@RequestBody ShoppingCartEntity entity){
         ShoppingCartEntity shoppingCartEntity = shoppingCartMapper.selectOne(new QueryWrapper<ShoppingCartEntity>().eq("regular_user_id",entity.getRegularUserId()).eq("commodity_id",entity.getCommodityId()));
