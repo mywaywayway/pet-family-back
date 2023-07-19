@@ -70,5 +70,12 @@ public class RegularUserController {
         return regularUserViewServiceImpl.updateRegularUser(regularUserView);
     }
 
+    @GetMapping("/findRegularUser/{find}")
+    public Result<?> findRegularUser(@PathVariable String find){
+        List<RegularUserView> list = regularUserViewMapper.selectList(new QueryWrapper<RegularUserView>().like("username",find).or().like("regular_name",find).or()
+                .like("nickname",find).or().like("phone",find).or().like("email",find));
+        return Result.success(list);
+    }
+
 }
 
