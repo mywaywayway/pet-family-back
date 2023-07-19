@@ -1,10 +1,13 @@
 package com.pet.pro.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
+import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.entity.ShoppingCartEntity;
 import com.pet.pro.entity.Vo.CartInfoData;
 import com.pet.pro.entity.views.ShoppingCartViewEntity;
+import com.pet.pro.mapper.ShoppingCartMapper;
 import com.pet.pro.service.ShoppingCartService;
 import com.pet.pro.service.ShoppingCartViewService;
 import com.pet.pro.service.impl.ShoppingCartServiceImpl;
@@ -26,6 +29,8 @@ public class ShoppingCartController {
 
     private ShoppingCartViewServiceImpl shoppingCartViewService;
 
+    private ShoppingCartMapper shoppingCartMapper;
+
     @Autowired
     public void setShoppingCartViewService(ShoppingCartViewServiceImpl shoppingCartViewService) {
         this.shoppingCartViewService = shoppingCartViewService;
@@ -36,6 +41,10 @@ public class ShoppingCartController {
         this.shoppingCartService = shoppingCartService;
     }
 
+    @Autowired
+    public void setShoppingCartMapper(ShoppingCartMapper shoppingCartMapper) {
+        this.shoppingCartMapper = shoppingCartMapper;
+    }
     /**
      * 根据用户id获取购物车信息
      *
@@ -117,11 +126,15 @@ public class ShoppingCartController {
 
     @PostMapping("/addCommodity")
     public Result<?> addCommodity(@RequestBody ShoppingCartEntity entity){
-        shoppingCartService.save(entity);
-        return Result.success();
+        ShoppingCartEntity shoppingCartEntity = shoppingCartMapper.selectOne(new QueryWrapper<ShoppingCartEntity>().eq("regular_user_id",entity.getRegularUserId()).eq("commodity_id",entity.getCommodityId()));
+        if (shoppingCartEntity != null){
+            shoppingCartEntity.setCommodityNumber(shoppingCartEntity.getCommodityNumber()+entity.getCommodityNumber());
+            shoppingCartService.updateById(shoppingCartEntity);
+            return Result.success();
+        }else {
+            shoppingCartService.save(entity);
+            return Result.success();
+        }
     }
-
-
-
 }
 
