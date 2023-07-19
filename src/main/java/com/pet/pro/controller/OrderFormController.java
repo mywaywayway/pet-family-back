@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
@@ -307,19 +308,19 @@ public class OrderFormController {
      */
     @ApiOperation("购物车下单")
     @PostMapping("saveOrder")
+    @Transactional(rollbackFor = Exception.class)
     public Result<?> saveOrder(@RequestBody ShopCarDTO shopCarDTO) {
+        Set<Integer> set = new HashSet<>();
         List<OrderFormEntity> orderFormEntityList = new ArrayList<>();
-        HashSet<Integer> sid = new HashSet<>();
         for (int i = 0; i < shopCarDTO.getList().size(); i++) {
             QueryWrapper<CommodityEntity> wrapper = new QueryWrapper<>();
             wrapper.eq("id", shopCarDTO.getList().get(i).getCommodityId());
-            System.out.println(shopCarDTO.getList().get(i).getCommodityId());
             CommodityEntity commodityEntity = commodityService.getOne(wrapper);
-            sid.add(commodityEntity.getShopId());
+            set.add(commodityEntity.getShopId());
         }
-        for (Integer integer : sid) {
+        for (Integer shopId : set) {
             QueryWrapper<CommodityEntity> wrapper = new QueryWrapper<>();
-            wrapper.eq("shop_id", integer);
+            wrapper.eq("shop_id", shopId);
             List<CommodityEntity> commodityEntityList = commodityService.list(wrapper);
             List<Integer> list = new ArrayList<>();
             for (int j = 0; j < commodityEntityList.size(); j++) {
@@ -336,17 +337,34 @@ public class OrderFormController {
             BeanUtils.copyProperties(shopCarDTO.getOrderFormEntity(), newOrderFormEntity);
             orderFormService.save(newOrderFormEntity);
             Integer id = newOrderFormEntity.getId();
+
             for (int j = 0; j < list1.size(); j++) {
-                OrderGoodsEntity orderGoodsEntity = list1.get(j);
-                orderGoodsEntity.setOrderId(id);
-                CommodityEntity commodityEntity = commodityService.getOne(new QueryWrapper<CommodityEntity>().eq("id", shopCarDTO.getList().get(j).getCommodityId()));
-                orderGoodsEntity.setTotalPrice(commodityEntity.getPrice() * orderGoodsEntity.getNum());
-                orderGoodsEntity.setState("待付款");
-                totalPrice += orderGoodsEntity.getTotalPrice();
-                orderGoodsService.save(orderGoodsEntity);
-                StorageEntity storageEntity = storageService.getOne(new QueryWrapper<StorageEntity>().eq("commodity_id", orderGoodsEntity.getCommodityId()));
-                storageEntity.setQuantity(storageEntity.getQuantity() - orderGoodsEntity.getNum());
-                storageService.updateById(storageEntity);
+                try {
+                    OrderGoodsEntity orderGoodsEntity = list1.get(j);
+                    orderGoodsEntity.setOrderId(id);
+                    QueryWrapper<StorageEntity> wrapper1 = new QueryWrapper<>();
+                    wrapper1.eq("commodity_id", list1.get(j).getCommodityId());
+                    StorageEntity storage = storageService.getOne(wrapper1);
+                    CommodityEntity commodityEntity = commodityService.getOne(new QueryWrapper<CommodityEntity>().eq("id", shopCarDTO.getList().get(j).getCommodityId()));
+                    if (storage.getQuantity() < orderGoodsEntity.getNum()) {
+                        throw new RuntimeException(String.valueOf(orderGoodsEntity.getCommodityId()));
+                    }
+                    orderGoodsEntity.setTotalPrice(commodityEntity.getPrice() * orderGoodsEntity.getNum());
+                    orderGoodsEntity.setState("待付款");
+                    totalPrice += orderGoodsEntity.getTotalPrice();
+                    orderGoodsService.save(orderGoodsEntity);
+                    storage.setQuantity(storage.getQuantity() - orderGoodsEntity.getNum());
+                    storageService.updateById(storage);
+                } catch (Exception e) {
+                    QueryWrapper<CommodityEntity> wrapper1 = new QueryWrapper<>();
+                    wrapper1.eq("id",e.getLocalizedMessage());
+                    CommodityEntity commodity = commodityService.getOne(wrapper1);
+                    QueryWrapper<StorageEntity> wrapper2 = new QueryWrapper<>();
+                    wrapper2.eq("commodity_id",e.getLocalizedMessage());
+                    StorageEntity storage = storageService.getOne(wrapper2);
+                    return Result.fail(900,commodity.getName()+"仅剩"+storage.getQuantity()+"件");
+                }
+
             }
             newOrderFormEntity.setTotalPrice(totalPrice);
             newOrderFormEntity.setState("待付款");
