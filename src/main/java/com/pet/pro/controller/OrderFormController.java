@@ -248,10 +248,14 @@ public class OrderFormController {
         wrapper1.eq("order_id",id);
         List<OrderGoodsEntity> list = orderGoodsService.list(wrapper1);
         for (int i = 0; i < list.size(); i++) {
+            OrderGoodsEntity orderGoodsEntity = list.get(i);
+            orderFormEntity.setState("已发货");
+            orderGoodsService.updateById(orderGoodsEntity);
             QueryWrapper<CommodityEntity> commodityEntityQueryWrapper = new QueryWrapper<>();
             commodityEntityQueryWrapper.eq("id",list.get(i).getCommodityId());
-            QueryWrapper<StorageEntity> storageEntityQueryWrapper = new QueryWrapper<>();
-            storageEntityQueryWrapper.eq("commodity_id",list.get(i).getCommodityId());
+            CommodityEntity commodity = commodityService.getOne(commodityEntityQueryWrapper);
+            commodity.setSaleVolume(commodity.getSaleVolume()+list.get(i).getNum());
+            commodityService.updateById(commodity);
         }
         orderFormService.updateById(orderFormEntity);
         return Result.success();
@@ -306,6 +310,9 @@ public class OrderFormController {
                 orderGoodsEntity.setState("待付款");
                 totalPrice += orderGoodsEntity.getTotalPrice();
                 orderGoodsService.save(orderGoodsEntity);
+                StorageEntity storageEntity = storageService.getOne(new QueryWrapper<StorageEntity>().eq("commodity_id", orderGoodsEntity.getCommodityId()));
+                storageEntity.setQuantity(storageEntity.getQuantity() - orderGoodsEntity.getNum());
+                storageService.updateById(storageEntity);
             }
             newOrderFormEntity.setTotalPrice(totalPrice);
             newOrderFormEntity.setState("待付款");
