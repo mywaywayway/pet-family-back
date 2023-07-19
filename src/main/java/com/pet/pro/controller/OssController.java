@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@RestController
+@RestController("OssController")
 @RequestMapping("/oss")
 @CrossOrigin
 public class OssController {

@@ -16,27 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * <p>
- * 商店信息 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 11:08:12
-import com.pet.pro.Result;
-import com.pet.pro.entity.CommentsEntity;
-import com.pet.pro.service.impl.CommentsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-17 14:11:59
- */
 @RestController
 @RequestMapping("/comments-entity")
 public class CommentsController {

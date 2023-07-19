@@ -22,15 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- * 商店信息 前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 11:08:12
- */
-@RestController
+
+@RestController("CommentsOrderFormController")
 @RequestMapping("/comments-order-form-entity")
 public class CommentsOrderFormController {
    @Autowired

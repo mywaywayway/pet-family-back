@@ -21,15 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author  My-way
- * @since 2023-07-12 11:08:12
- */
-@RestController
+
+@RestController("OrderTotalInfoViewController")
 @RequestMapping("/order-total-info-entity")
 public class OrderTotalInfoViewController {
     @Autowired
