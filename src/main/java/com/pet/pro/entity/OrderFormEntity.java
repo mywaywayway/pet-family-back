@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -26,6 +28,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @TableName("order_form")
 @ApiModel(value = "OrderFormEntity对象", description = "")
 public class OrderFormEntity {
+
+    @TableField(exist = false)
+    private List<OrderGoodsEntity> orderGoodsList;
 
     @ApiModelProperty("订单id")
     @TableId(value = "id", type = IdType.AUTO)

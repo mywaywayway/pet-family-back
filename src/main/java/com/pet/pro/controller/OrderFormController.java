@@ -9,7 +9,9 @@ import com.pet.pro.entity.DTO.OrderAddrDTO;
 import com.pet.pro.entity.DTO.OrderInfoDTO;
 import com.pet.pro.entity.DTO.ShopCarDTO;
 import com.pet.pro.entity.Vo.OrderInfoVo;
+import com.pet.pro.entity.views.ComGoodsView;
 import com.pet.pro.mapper.OrderFormMapper;
+import com.pet.pro.service.ComGoodsService;
 import com.pet.pro.service.CommodityService;
 import com.pet.pro.service.OrderFormService;
 import com.pet.pro.service.StorageService;
@@ -54,6 +56,9 @@ public class OrderFormController {
 
     @Autowired
     private CommodityService commodityService;
+
+    @Autowired
+    private ComGoodsService comGoodsService;
 
     private ShopServiceImpl shopService;
 
@@ -229,32 +234,7 @@ public class OrderFormController {
     }
 
 
-//    /**
-//     * 去除数组重复数据
-//     *
-//     * @param array
-//     * @return
-//     */
-//    public int[] getDistinctNumbers(int[] array) {
-//        Set<Integer> distinctSet = new HashSet<>();
-//
-//        // 将数组中的元素添加到Set中
-//        for (int i = 0; i < array.length; i++) {
-//            distinctSet.add(array[i]);
-//        }
-//
-//        // 创建一个新的整数数组来存储不重复的数
-//        int[] distinctNumbers = new int[distinctSet.size()];
-//
-//        // 将不重复的数从Set中拷贝到新的数组中
-//        int index = 0;
-//        for (int num : distinctSet) {
-//            distinctNumbers[index++] = num;
-//        }
-//
-//        // 返回不重复的数的数组
-//        return distinctNumbers;
-//    }
+
 
     /**
      * 商家同意退货
@@ -471,34 +451,35 @@ public class OrderFormController {
         List<OrderInfoDTO> list = new ArrayList<>();
         QueryWrapper<OrderFormEntity> wrapper = new QueryWrapper<>();
         wrapper.eq("person_id", id);
-        List<OrderFormEntity> orderFormEntityList = orderFormService.list(wrapper);
-        int t = 0;
-        for (int i = 0; i < orderFormEntityList.size(); i++) {
-            List<OrderInfoVo> orderInfoVoList = new ArrayList<>();
-            OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
-            QueryWrapper<OrderGoodsEntity> orderGoodsEntityQueryWrapper = new QueryWrapper<>();
-            orderGoodsEntityQueryWrapper.eq("order_id", orderFormEntityList.get(i).getId());
-            List<OrderGoodsEntity> orderGoodsEntityList = orderGoodsService.list(orderGoodsEntityQueryWrapper);
 
-            for (int j = 0; j < orderGoodsEntityList.size(); j++) {
-                QueryWrapper<CommodityEntity> commodityEntityQueryWrapper = new QueryWrapper<>();
-                commodityEntityQueryWrapper.eq("id", orderGoodsEntityList.get(j).getCommodityId());
+        List<OrderFormEntity> orderFormEntityList = orderFormService.list(wrapper);
+
+        for (OrderFormEntity orderFormEntity : orderFormEntityList) {
+            OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+            orderInfoDTO.setOrderFormEntity(orderFormEntity);
+
+            // 执行关联查询，获取订单商品列表
+            QueryWrapper<OrderGoodsEntity> orderGoodsWrapper = new QueryWrapper<>();
+            orderGoodsWrapper.eq("order_id", orderFormEntity.getId());
+            List<OrderGoodsEntity> orderGoodsList = orderGoodsService.list(orderGoodsWrapper);
+            orderFormEntity.setOrderGoodsList(orderGoodsList);
+            List<OrderInfoVo> orderInfoVoList = new ArrayList<>();
+            for (int i = 0; i < orderGoodsList.size(); i++) {
+                QueryWrapper<ComGoodsView> wrapper1 = new QueryWrapper<>();
+                wrapper1.eq("id",orderGoodsList.get(i).getCommodityId());
                 OrderInfoVo orderInfoVo = new OrderInfoVo();
-                orderInfoVo.setOrderGoodsEntity(orderGoodsEntityList.get(j));
-                orderInfoVo.setName(commodityService.getOne(commodityEntityQueryWrapper).getName());
-                orderInfoVo.setPhoto(commodityService.getOne(commodityEntityQueryWrapper).getPhoto());
-                QueryWrapper<ShopEntity> wrapper1 = new QueryWrapper<>();
-                wrapper1.eq("id", commodityService.getOne(commodityEntityQueryWrapper).getShopId());
-                ShopEntity shopEntity = shopService.getOne(wrapper1);
-                orderInfoVo.setShopName(shopEntity.getName());
+                orderInfoVo.setOrderGoodsEntity(orderGoodsList.get(i));
+                ComGoodsView comGoodsView = comGoodsService.getOne(wrapper1);
+                orderInfoVo.setName(comGoodsView.getCommodityName());
+                orderInfoVo.setPhoto(comGoodsView.getPhoto());
+                orderInfoVo.setShopName(comGoodsView.getShopName());
                 orderInfoVoList.add(orderInfoVo);
-                t++;
             }
             orderInfoDTO.setList(orderInfoVoList);
-            orderInfoDTO.setOrderFormEntity(orderFormEntityList.get(i));
+
             list.add(orderInfoDTO);
         }
-        System.out.println(t);
+
         return Result.success(list);
     }
 
