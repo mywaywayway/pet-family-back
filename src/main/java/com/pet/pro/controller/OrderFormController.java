@@ -530,7 +530,7 @@ public class OrderFormController {
             QueryWrapper<OrderFormEntity> orderFormEntityQueryWrapper = new QueryWrapper<>();
             orderFormEntityQueryWrapper.eq("id", integer);
             OrderFormEntity orderFormEntity = orderFormService.getOne(orderFormEntityQueryWrapper);
-            if (!orderFormEntity.getState().equals("已完成") && orderFormEntity.getState().equals("已收货")) {
+            if (!orderFormEntity.getState().equals("已完成") && !orderFormEntity.getState().equals("已收货")) {
                 continue;
             }
             OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
