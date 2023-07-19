@@ -31,11 +31,11 @@ public class CommentsEntity {
 
     @ApiModelProperty("评价内容")
     @TableField("`comments_content`")
-    private String commentContent;
+    private String commentsContent;
 
     @ApiModelProperty("评价照片")
     @TableField("comments_photo")
-    private String commentPhoto;
+    private String commentsPhoto;
 
     @ApiModelProperty("订单id")
     @TableField("order_id")

@@ -108,7 +108,20 @@ public class ShoppingCartController {
         }
     }
 
-    
+    /**
+     * 一种商品加入购物车
+     * @param entity 购物车实体类
+     * @return 添加结果
+     *
+     */
+
+    @PostMapping("/addCommodity")
+    public Result<?> addCommodity(@RequestBody ShoppingCartEntity entity){
+        shoppingCartService.save(entity);
+        return Result.success();
+    }
+
+
 
 }
 

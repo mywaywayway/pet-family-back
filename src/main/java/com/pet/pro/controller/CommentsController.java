@@ -2,12 +2,14 @@ package com.pet.pro.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.pet.pro.Result;
 import com.pet.pro.entity.CommentsEntity;
 import com.pet.pro.entity.ShopEntity;
 import com.pet.pro.mapper.CommentsMapper;
 import com.pet.pro.mapper.ShopMapper;
 import com.pet.pro.service.impl.CommentsServiceImpl;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -111,6 +113,25 @@ public class CommentsController {
             return Result.fail();
         }
     }
+
+    /**
+     *
+     *
+     * @param commodityId 商品id
+     * @param orderId 订单id
+     * @return Result
+     */
+
+    @ApiOperation("查询评价")
+    @GetMapping("getComment/{commodityId}/{orderId}")
+    public Result<?> getComment(@PathVariable Integer commodityId,@PathVariable Integer orderId){
+        QueryWrapper<CommentsEntity> wrapper = new QueryWrapper<>();
+        wrapper.eq("commodity_id",commodityId);
+        wrapper.eq("order_id",orderId);
+        CommentsEntity commentsEntity = commentsService.getOne(wrapper);
+        return Result.success(commentsEntity);
+    }
+
 
 }
 
